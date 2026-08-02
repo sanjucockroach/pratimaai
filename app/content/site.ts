@@ -1,0 +1,182 @@
+export type PillarId = "ai-support" | "software" | "education";
+export type PillarColour = "coral" | "blue" | "green";
+
+export interface ServicePillar {
+  id: PillarId;
+  name: string;
+  shortName: string;
+  colour: PillarColour;
+  summary: string;
+  suitableFor: string[];
+  capabilities: string[];
+  outcomes: string[];
+  cta: string;
+}
+
+export interface HeroClip {
+  id: "connection" | "software" | "learning";
+  srcMp4: string;
+  srcWebm?: string;
+  poster: string;
+  sourceUrl: string;
+  license: "Mixkit Stock Video Free License";
+  durationCapSeconds: number;
+}
+
+export interface SiteConfig {
+  name: string;
+  tagline: string;
+  description: string;
+  siteUrl: string;
+  email?: string;
+  whatsappNumber?: string;
+  areaServed: string;
+  socialLinks: ReadonlyArray<{ label: string; href: string }>;
+}
+
+const publicEmail = import.meta.env.VITE_PUBLIC_CONTACT_EMAIL?.trim() || undefined;
+const publicWhatsapp = import.meta.env.VITE_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || undefined;
+
+export const siteConfig: SiteConfig = {
+  name: "PRATIMA AI",
+  tagline: "Connecting Dots",
+  description:
+    "PRATIMA AI connects applied intelligence, custom software and education platforms for organisations in India.",
+  siteUrl: import.meta.env.VITE_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://pratima-ai.in",
+  email: publicEmail,
+  whatsappNumber: publicWhatsapp,
+  areaServed: "India",
+  socialLinks: [],
+};
+
+export const servicePillars: readonly ServicePillar[] = [
+  {
+    id: "ai-support",
+    name: "AI Intelligence and Business Support",
+    shortName: "Intelligence and Support",
+    colour: "coral",
+    summary:
+      "Applied AI systems and hands-on operational support, shaped around the work a business actually needs to move.",
+    suitableFor: [
+      "Teams evaluating where AI can create practical value",
+      "Organisations connecting scattered information and workflows",
+      "Operators who need continued support after an initial build",
+    ],
+    capabilities: [
+      "AI opportunity and workflow assessment",
+      "Applied assistants and internal knowledge systems",
+      "Automation design and ongoing operational support",
+    ],
+    outcomes: [
+      "A clear, bounded use case",
+      "A working system connected to real operations",
+      "A support path after launch",
+    ],
+    cta: "Discuss an AI requirement",
+  },
+  {
+    id: "software",
+    name: "Software Solutions",
+    shortName: "Software Solutions",
+    colour: "blue",
+    summary:
+      "Custom software designed around the way a team works, from the first system map through a maintainable release.",
+    suitableFor: [
+      "Teams replacing manual or fragmented processes",
+      "Businesses planning a new digital product",
+      "Organisations that need connected internal tools",
+    ],
+    capabilities: [
+      "Product and workflow definition",
+      "Web platforms and operational tools",
+      "Integration, testing and release support",
+    ],
+    outcomes: [
+      "A shared product definition",
+      "A usable and maintainable software release",
+      "A clear path for iteration",
+    ],
+    cta: "Discuss a software build",
+  },
+  {
+    id: "education",
+    name: "Schools and EdTech",
+    shortName: "Schools and EdTech",
+    colour: "green",
+    summary:
+      "AI-aware tools and platforms built for educators, institutions and the practical realities of learning environments.",
+    suitableFor: [
+      "Schools exploring responsible use of AI",
+      "Education teams planning digital learning services",
+      "EdTech organisations building or improving platforms",
+    ],
+    capabilities: [
+      "Education workflow and platform discovery",
+      "Learning and administration tools",
+      "AI-assisted education experiences with human oversight",
+    ],
+    outcomes: [
+      "A defined education need and audience",
+      "Technology that supports rather than obscures learning",
+      "An implementation path institutions can operate",
+    ],
+    cta: "Discuss an education project",
+  },
+] as const;
+
+export const heroClips: readonly HeroClip[] = [
+  {
+    id: "connection",
+    srcMp4: "/video/connection.mp4",
+    poster: "/assets/hero-poster.png",
+    sourceUrl: "https://mixkit.co/free-stock-video/architect-working-on-a-model-21226/",
+    license: "Mixkit Stock Video Free License",
+    durationCapSeconds: 8,
+  },
+  {
+    id: "software",
+    srcMp4: "/video/software.mp4",
+    poster: "/assets/hero-poster.png",
+    sourceUrl: "https://mixkit.co/free-stock-video/microchip-technology-close-up-1140/",
+    license: "Mixkit Stock Video Free License",
+    durationCapSeconds: 8,
+  },
+  {
+    id: "learning",
+    srcMp4: "/video/learning.mp4",
+    poster: "/assets/hero-poster.png",
+    sourceUrl: "https://mixkit.co/free-stock-video/student-makes-a-note-over-wooden-desk-filled-with-mathematical-50111/",
+    license: "Mixkit Stock Video Free License",
+    durationCapSeconds: 8,
+  },
+] as const;
+
+export const processSteps = [
+  {
+    name: "Understand",
+    detail: "Clarify the people, work, constraints and decision the project must support.",
+  },
+  {
+    name: "Design",
+    detail: "Map the system, prototype the critical interaction and agree what success means.",
+  },
+  {
+    name: "Build",
+    detail: "Deliver the smallest complete release, with quality and operating needs built in.",
+  },
+  {
+    name: "Support",
+    detail: "Observe real use, resolve issues and improve the system without losing its purpose.",
+  },
+] as const;
+
+export function getWhatsAppHref(context = "a project with PRATIMA AI") {
+  if (!siteConfig.whatsappNumber) return "/contact#contact-details";
+  const message = encodeURIComponent(`Hello PRATIMA AI, I would like to discuss ${context}.`);
+  return `https://wa.me/${siteConfig.whatsappNumber}?text=${message}`;
+}
+
+export function getEmailHref(subject = "Project enquiry") {
+  if (!siteConfig.email) return "/contact#contact-details";
+  return `mailto:${siteConfig.email}?subject=${encodeURIComponent(subject)}`;
+}

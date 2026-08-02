@@ -1,0 +1,17 @@
+{
+  "name": "PRATIMA AI",
+  "short_name": "PRATIMA AI",
+  "description": "A connected practice for applied intelligence, custom software and education platforms.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/assets/pratima-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

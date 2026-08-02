@@ -1,0 +1,21 @@
+node_modules/
+build/
+.react-router/
+playwright-report/
+test-results/
+coverage/
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Private working material and local source references
+skills/
+.agents/
+.codex/
+Logo.png
+*.md
+!README.md
+
+# Vercel local state
+.vercel/
