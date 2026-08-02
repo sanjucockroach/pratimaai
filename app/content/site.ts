@@ -13,16 +13,6 @@ export interface ServicePillar {
   cta: string;
 }
 
-export interface HeroClip {
-  id: "connection" | "software" | "learning";
-  srcMp4: string;
-  srcWebm?: string;
-  poster: string;
-  sourceUrl: string;
-  license: "Mixkit Stock Video Free License";
-  durationCapSeconds: number;
-}
-
 export interface SiteConfig {
   name: string;
   tagline: string;
@@ -121,33 +111,6 @@ export const servicePillars: readonly ServicePillar[] = [
       "An implementation path institutions can operate",
     ],
     cta: "Discuss an education project",
-  },
-] as const;
-
-export const heroClips: readonly HeroClip[] = [
-  {
-    id: "connection",
-    srcMp4: "/video/connection.mp4",
-    poster: "/assets/hero-poster.png",
-    sourceUrl: "https://mixkit.co/free-stock-video/architect-working-on-a-model-21226/",
-    license: "Mixkit Stock Video Free License",
-    durationCapSeconds: 8,
-  },
-  {
-    id: "software",
-    srcMp4: "/video/software.mp4",
-    poster: "/assets/hero-poster.png",
-    sourceUrl: "https://mixkit.co/free-stock-video/microchip-technology-close-up-1140/",
-    license: "Mixkit Stock Video Free License",
-    durationCapSeconds: 8,
-  },
-  {
-    id: "learning",
-    srcMp4: "/video/learning.mp4",
-    poster: "/assets/hero-poster.png",
-    sourceUrl: "https://mixkit.co/free-stock-video/student-makes-a-note-over-wooden-desk-filled-with-mathematical-50111/",
-    license: "Mixkit Stock Video Free License",
-    durationCapSeconds: 8,
   },
 ] as const;
 

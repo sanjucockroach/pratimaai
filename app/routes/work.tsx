@@ -1,6 +1,5 @@
 import type { MetaFunction } from "react-router";
 import { ContactActions } from "~/components/ContactActions";
-import { NodeMotif } from "~/components/NodeMotif";
 import { siteConfig } from "~/content/site";
 
 export const meta: MetaFunction = () => [
@@ -26,7 +25,9 @@ export default function WorkRoute() {
         </p>
         <ContactActions context="a relevant project or private capability conversation" />
       </div>
-      <NodeMotif className="coming-soon-page__motif" />
+      <div className="coming-soon-page__field" aria-hidden="true">
+        <span>Context</span><span>Decision</span><span>System</span><span>Outcome</span>
+      </div>
     </section>
   );
 }

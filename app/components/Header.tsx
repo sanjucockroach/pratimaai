@@ -1,5 +1,6 @@
+import { Plus, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 import { getWhatsAppHref } from "~/content/site";
 
 const links = [
@@ -26,29 +27,44 @@ export function Header() {
 
   return (
     <header className="site-header">
-      <NavLink to="/" className="brand" aria-label="PRATIMA AI home">
-        <img src="/assets/pratima-mark.svg" alt="" width="42" height="34" />
-        <span>PRATIMA-AI</span>
-      </NavLink>
-      <button
-        className="menu-toggle"
-        type="button"
-        aria-expanded={open}
-        aria-controls="primary-navigation"
-        onClick={() => setOpen((value) => !value)}
-      >
-        <span>{open ? "Close" : "Menu"}</span>
-        <span className="menu-toggle__glyph" aria-hidden="true">{open ? "×" : "+"}</span>
-      </button>
+      <div className="nav-cluster nav-cluster--left">
+        <Link to="/" className="brand-pill" aria-label="PRATIMA AI home">
+          <img src="/assets/pratima-mark.svg" alt="" width="32" height="26" />
+          <span>PRATIMA AI</span>
+        </Link>
+        <button
+          className="menu-pill"
+          type="button"
+          aria-expanded={open}
+          aria-controls="primary-navigation"
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span className="menu-pill__icon" aria-hidden="true">
+            {open ? <X size={12} strokeWidth={3} /> : <Plus size={12} strokeWidth={3} />}
+          </span>
+          <span>{open ? "Close" : "Menu"}</span>
+        </button>
+        <div className="discipline-pill" aria-label="PRATIMA AI disciplines">
+          <span>AI intelligence</span>
+          <span>Software</span>
+          <span>Learning</span>
+        </div>
+      </div>
+
+      <a className="project-pill" href={getWhatsAppHref()} target="_blank" rel="noreferrer">
+        <span className="project-pill__grid" aria-hidden="true">
+          <i /><i /><i /><i />
+        </span>
+        <span>Start a project</span>
+      </a>
+
       <nav id="primary-navigation" className={`primary-nav${open ? " is-open" : ""}`} aria-label="Primary">
+        <p>Explore PRATIMA AI</p>
         {links.map((link) => (
           <NavLink key={link.href} to={link.href} className={({ isActive }) => (isActive ? "is-active" : undefined)}>
-            {link.label}
+            <span>{link.label}</span><span aria-hidden="true">↗</span>
           </NavLink>
         ))}
-        <a className="nav-contact" href={getWhatsAppHref()}>
-          Start a project <span aria-hidden="true">↗</span>
-        </a>
       </nav>
     </header>
   );

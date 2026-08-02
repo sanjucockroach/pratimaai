@@ -1,6 +1,8 @@
+import { motion } from "motion/react";
 import type { MetaFunction } from "react-router";
+import { Link } from "react-router";
+import { AmbientVideo } from "~/components/AmbientVideo";
 import { ContactActions } from "~/components/ContactActions";
-import { NodeMotif } from "~/components/NodeMotif";
 import { siteConfig } from "~/content/site";
 
 export const meta: MetaFunction = () => [
@@ -25,36 +27,45 @@ const principles = [
 export default function AboutRoute() {
   return (
     <>
-      <header className="page-hero page-hero--about">
-        <p className="utility-label">About PRATIMA AI</p>
-        <h1>The logo is not decoration. It is the operating idea.</h1>
-        <p>A central intelligence connects to distinct fields without flattening what makes each one different.</p>
-      </header>
-      <section className="about-diagram section-shell">
-        <NodeMotif className="about-diagram__motif" />
+      <section className="about-cinema" aria-labelledby="about-heading">
+        <AmbientVideo
+          className="about-cinema__video"
+          poster="/assets/hero-poster.png"
+          src="/video/connection.mp4"
+        />
+        <div className="about-cinema__wash" />
+        <motion.div className="about-cinema__content" initial={{ opacity: 1, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
+          <p className="utility-label">About PRATIMA AI</p>
+          <h1 id="about-heading"><span>Purpose.</span><span>Connected.</span></h1>
+          <p>A central intelligence connects distinct fields without flattening what makes each one different.</p>
+          <div className="about-cinema__actions">
+            <Link className="soft-button" to="#principles">How we work</Link>
+            <a className="dark-button" href={siteConfig.whatsappNumber ? `https://wa.me/${siteConfig.whatsappNumber}` : "/contact"}>Start a conversation</a>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="about-statement">
         <div>
           <p className="utility-label">Connecting dots</p>
-          <h2>One hub. Three practices. Connections made with purpose.</h2>
-          <p>
-            PRATIMA AI works across applied intelligence, software and education. The connection is a shared method: understand the people and work, define the system, build it clearly and remain available after release.
-          </p>
+          <h2>The logo is an operating idea, not a decoration.</h2>
+        </div>
+        <div>
+          <p>PRATIMA AI works across applied intelligence, software and education.</p>
+          <p>The connection is a shared method: understand the people and work, define the system, build it clearly and remain available after release.</p>
         </div>
       </section>
-      <section className="principles section-shell" aria-labelledby="principles-heading">
-        <div className="section-intro section-intro--compact">
-          <p className="utility-label">Operating principles</p>
-          <h2 id="principles-heading">The discipline behind the connection.</h2>
-        </div>
+
+      <section id="principles" className="principles" aria-labelledby="principles-heading">
+        <div className="principles__heading"><p className="utility-label utility-label--light">Operating principles</p><h2 id="principles-heading">The discipline behind the connection.</h2></div>
         <div className="principles-list">
-          {principles.map(([title, detail]) => (
-            <article key={title}>
-              <h3>{title}</h3>
-              <p>{detail}</p>
-            </article>
+          {principles.map(([title, detail], index) => (
+            <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{detail}</p></article>
           ))}
         </div>
       </section>
-      <section className="closing-contact section-shell">
+
+      <section className="closing-contact">
         <div><p className="utility-label">Talk with us</p><h2>Start with a useful question.</h2></div>
         <div><p>We can help clarify whether the work needs AI, software, education technology or a connection between them.</p><ContactActions compact /></div>
       </section>

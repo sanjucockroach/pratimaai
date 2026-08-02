@@ -1,8 +1,8 @@
+import { ArrowUpRight, ChevronRight } from "lucide-react";
 import type { MetaFunction } from "react-router";
 import { Link } from "react-router";
 import { ContactActions } from "~/components/ContactActions";
 import { Hero } from "~/components/Hero";
-import { NodeMotif } from "~/components/NodeMotif";
 import { Reveal } from "~/components/Reveal";
 import { processSteps, servicePillars, siteConfig } from "~/content/site";
 
@@ -19,88 +19,106 @@ export const meta: MetaFunction = () => [
 ];
 
 export const links = () => [
-  { rel: "preload", as: "image", href: "/assets/hero-poster.png", fetchPriority: "high" },
+  { rel: "preload", as: "image", href: "/assets/pratima-circuit-poster.png", fetchPriority: "high" },
 ];
+
+const insightCapabilities = [
+  {
+    index: "01",
+    title: "Real-time vision",
+    body: "Reads context as it happens and surfaces what matters before you ask.",
+  },
+  {
+    index: "02",
+    title: "Layered insight",
+    body: "Moves from rough outline to sharp output without losing the thread.",
+  },
+  {
+    index: "03",
+    title: "Adaptive speed",
+    body: "Learns your cadence and tightens every pass as you work.",
+  },
+] as const;
 
 export default function HomeRoute() {
   return (
     <>
       <Hero />
 
-      <section className="manifesto section-shell" aria-labelledby="manifesto-heading">
-        <Reveal>
-          <p className="utility-label">Our point of view</p>
-          <h2 id="manifesto-heading">
-            Intelligence is useful when it connects to real work.
-            <span>Software is useful when people can operate it.</span>
-            <span>Learning is useful when technology stays human.</span>
-          </h2>
-        </Reveal>
-      </section>
-
-      <section className="practices section-shell" aria-labelledby="practices-heading">
-        <div className="section-intro">
-          <p className="utility-label">Three connected practices</p>
-          <h2 id="practices-heading">Different fields. One system of thinking.</h2>
-          <p>
-            Each practice stands on its own. They connect when a project needs technology, intelligence and the people who will use both.
-          </p>
+      <section className="insight-stage" aria-labelledby="insight-heading">
+        <div className="insight-stage__copy">
+          <Reveal>
+            <p className="utility-label utility-label--light">Insight on demand</p>
+            <h2 id="insight-heading">Learn to see brilliantly.</h2>
+            <p>
+              Turn scattered information into a useful view of the work—then shape the software and learning systems that move it forward.
+            </p>
+            <ContactActions inverse compact />
+          </Reveal>
         </div>
-        <div className="practice-grid">
-          {servicePillars.map((pillar, index) => (
-            <Reveal key={pillar.id}>
-              <article className={`practice practice--${pillar.colour} practice--${index + 1}`}>
-                <div className="practice__copy">
-                  <p className="utility-label">{pillar.shortName}</p>
-                  <h3>{pillar.name}</h3>
-                  <p>{pillar.summary}</p>
-                  <Link to={`/services#${pillar.id}`}>Explore this practice <span aria-hidden="true">→</span></Link>
-                </div>
-                <NodeMotif colour={pillar.colour} className="practice__motif" />
-              </article>
+        <div className="capability-panel">
+          {insightCapabilities.map((capability, index) => (
+            <Reveal key={capability.index} delay={300 + index * 110}>
+              <Link className="capability-row" to="/services#ai-support">
+                <span className="capability-row__index">{capability.index}</span>
+                <span className="capability-row__copy">
+                  <strong>{capability.title}<ChevronRight size={16} aria-hidden="true" /></strong>
+                  <span>{capability.body}</span>
+                </span>
+              </Link>
             </Reveal>
           ))}
         </div>
       </section>
 
-      <section className="process section-shell" aria-labelledby="process-heading">
-        <div className="section-intro section-intro--compact">
-          <p className="utility-label">How we work</p>
-          <h2 id="process-heading">A clear route from question to working system.</h2>
+      <section className="practice-ledger" aria-labelledby="practices-heading">
+        <div className="practice-ledger__intro">
+          <p className="utility-label">Three connected practices</p>
+          <h2 id="practices-heading">One operating view. Three ways to make it real.</h2>
         </div>
-        <ol className="process-track">
-          {processSteps.map((step) => (
+        <div className="practice-ledger__rows">
+          {servicePillars.map((pillar, index) => (
+            <Reveal key={pillar.id} delay={index * 90}>
+              <Link className={`practice-ledger__row practice-ledger__row--${pillar.colour}`} to={`/services#${pillar.id}`}>
+                <span className="practice-ledger__signal" aria-hidden="true" />
+                <span className="practice-ledger__name">{pillar.name}</span>
+                <span className="practice-ledger__summary">{pillar.summary}</span>
+                <ArrowUpRight size={22} aria-hidden="true" />
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="method-stage" aria-labelledby="method-heading">
+        <div className="method-stage__heading">
+          <p className="utility-label">How we work</p>
+          <h2 id="method-heading">From unclear question to working system.</h2>
+        </div>
+        <ol className="method-stage__steps">
+          {processSteps.map((step, index) => (
             <li key={step.name}>
-              <span className="process-track__node" aria-hidden="true" />
-              <h3>{step.name}</h3>
-              <p>{step.detail}</p>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div><h3>{step.name}</h3><p>{step.detail}</p></div>
             </li>
           ))}
         </ol>
       </section>
 
-      <section className="work-preview section-shell" aria-labelledby="work-heading">
+      <section className="work-preview" aria-labelledby="work-heading">
         <div>
-          <p className="utility-label">Work</p>
+          <p className="utility-label utility-label--light">Work / Publication in progress</p>
           <h2 id="work-heading">Evidence belongs with the real project.</h2>
         </div>
         <div>
-          <p>
-            Case studies are being prepared for publication. We will share only work we can explain accurately and responsibly.
-          </p>
-          <Link className="text-link" to="/work">Visit the work page <span aria-hidden="true">→</span></Link>
+          <p>Case studies are being prepared. We will publish only work we can explain accurately and responsibly.</p>
+          <Link className="text-link text-link--light" to="/work">Visit the work page <ArrowUpRight size={17} /></Link>
         </div>
       </section>
 
-      <section className="closing-contact section-shell" aria-labelledby="closing-heading">
-        <div>
-          <p className="utility-label">Start a conversation</p>
-          <h2 id="closing-heading">Bring us the problem before you bring us the specification.</h2>
-        </div>
-        <div>
-          <p>Tell us what needs to change, who it affects and what a useful result would look like.</p>
-          <ContactActions compact />
-        </div>
+      <section className="closing-contact" aria-labelledby="closing-heading">
+        <div><p className="utility-label">Start a conversation</p><h2 id="closing-heading">Bring us the problem before the specification.</h2></div>
+        <div><p>Tell us what needs to change, who it affects and what a useful result would look like.</p><ContactActions compact /></div>
       </section>
     </>
   );

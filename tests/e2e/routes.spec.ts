@@ -16,17 +16,26 @@ for (const route of routes) {
 
 test("the homepage makes the offer and conversion paths clear", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("AI, SOFTWARE AND LEARNING");
-  await expect(page.getByRole("link", { name: "START ON WHATSAPP" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "EMAIL US" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Clear.Precise.Automated.");
+  await expect(page.getByRole("link", { name: /Start on WhatsApp/i }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: /Email us/i }).first()).toBeVisible();
+  await expect(page.getByText("Learn to see brilliantly.")).toBeVisible();
 });
 
 test("navigation reaches every public route", async ({ page }) => {
-  await page.goto("/");
   for (const name of ["Services", "Work", "About", "Contact"] as const) {
+    await page.goto("/");
+    await page.getByRole("button", { name: "Menu" }).click();
     await page.getByRole("link", { name, exact: true }).first().click();
     await expect(page).toHaveURL(new RegExp(`/${name.toLowerCase()}$`));
   }
+});
+
+test("supporting heroes express the adapted PRATIMA AI directions", async ({ page }) => {
+  await page.goto("/services");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Three practices.Zero silos.");
+  await page.goto("/about");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Purpose.Connected.");
 });
 
 test("contact details use the configured WhatsApp number and email", async ({ page }) => {
