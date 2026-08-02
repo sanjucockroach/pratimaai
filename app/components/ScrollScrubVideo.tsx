@@ -18,7 +18,8 @@ export function ScrollScrubVideo({ rootRef, src, poster }: ScrollScrubVideoProps
   const targetTime = useRef(0);
   const frame = useRef<number | null>(null);
   const [ready, setReady] = useState(false);
-  const [staticMode, setStaticMode] = useState(true);
+  const [staticMode, setStaticMode] = useState(typeof window === "undefined");
+  const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -98,34 +99,44 @@ export function ScrollScrubVideo({ rootRef, src, poster }: ScrollScrubVideoProps
       if (frame.current === null) frame.current = window.requestAnimationFrame(easeToTarget);
     };
 
-    const onMetadata = () => {
+    const onReady = () => {
       setReady(true);
       updateTarget();
     };
 
-    video.addEventListener("loadedmetadata", onMetadata);
+    const onError = () => {
+      setVideoError(true);
+    };
+
+    video.addEventListener("loadedmetadata", onReady);
+    video.addEventListener("canplay", onReady);
+    video.addEventListener("error", onError);
     window.addEventListener("scroll", updateTarget, { passive: true });
     window.addEventListener("resize", updateTarget, { passive: true });
-    if (video.readyState >= 1) onMetadata();
+    if (video.readyState >= 1) onReady();
 
     return () => {
-      video.removeEventListener("loadedmetadata", onMetadata);
+      video.removeEventListener("loadedmetadata", onReady);
+      video.removeEventListener("canplay", onReady);
+      video.removeEventListener("error", onError);
       window.removeEventListener("scroll", updateTarget);
       window.removeEventListener("resize", updateTarget);
       if (frame.current !== null) window.cancelAnimationFrame(frame.current);
     };
   }, [rootRef, staticMode]);
 
+  const showVideo = !staticMode && !videoError;
+
   return (
-    <div className={`scroll-film-media${ready && !staticMode ? " is-ready" : ""}`} aria-hidden="true">
+    <div className={`scroll-film-media${ready && showVideo ? " is-ready" : ""}`} aria-hidden="true">
       <img src={poster} alt="" />
-      {!staticMode ? (
-        <video ref={videoRef} muted playsInline preload="auto" poster={poster}>
+      {showVideo ? (
+        <video ref={videoRef} crossOrigin="anonymous" muted playsInline preload="auto" poster={poster}>
           <source src={src} type="video/mp4" />
         </video>
       ) : null}
       <div className="scroll-film-grade" />
-      {!staticMode ? <canvas ref={canvasRef} className="scroll-film-canvas" /> : null}
+      {showVideo ? <canvas ref={canvasRef} className="scroll-film-canvas" /> : null}
     </div>
   );
 }

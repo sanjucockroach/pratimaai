@@ -2,11 +2,19 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { carouselRoles, nextCarouselIndex, type CarouselDirection } from "~/lib/carousel";
 
-export const TEAM_FIGURES = [
-  { src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/1.02464a56.png", bg: "#F4845F", panel: "#F79B7F" },
-  { src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/2.b977faab.png", bg: "#6BBF7A", panel: "#85CC92" },
-  { src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/3.4df853b4.png", bg: "#E882B4", panel: "#ED9DC4" },
-  { src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/4.4457fbce.png", bg: "#6EB5FF", panel: "#8DC4FF" },
+interface TeamMember {
+  name: string;
+  role: string;
+  src: string;
+  bg: string;
+  panel: string;
+}
+
+export const TEAM_FIGURES: readonly TeamMember[] = [
+  { name: "Prashanth", role: "CEO & Founder", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/1.02464a56.png", bg: "#F4845F", panel: "#F79B7F" },
+  { name: "Sanjeeva Reddy", role: "CTO", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/2.b977faab.png", bg: "#6BBF7A", panel: "#85CC92" },
+  { name: "Riya", role: "CFO & HR", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/3.4df853b4.png", bg: "#E882B4", panel: "#ED9DC4" },
+  { name: "Varun", role: "President", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/4.4457fbce.png", bg: "#6EB5FF", panel: "#8DC4FF" },
 ] as const;
 
 const grain = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E")`;
@@ -27,6 +35,7 @@ function figureStyle(role: FigureRole, isMobile: boolean): CSSProperties {
     transform: `translateX(-50%) scale(${role === "center" ? (isMobile ? 1.25 : 1.68) : 1})`,
     transition: "transform 650ms cubic-bezier(0.4,0,0.2,1), filter 650ms cubic-bezier(0.4,0,0.2,1), opacity 650ms cubic-bezier(0.4,0,0.2,1), left 650ms cubic-bezier(0.4,0,0.2,1)",
     willChange: "transform, filter, opacity",
+    cursor: role !== "center" ? "pointer" : "default",
   };
 }
 
@@ -36,7 +45,8 @@ export function TeamCarouselHero() {
   const [isMobile, setIsMobile] = useState(false);
   const unlockTimer = useRef<number | null>(null);
   const roles = carouselRoles(activeIndex);
-  const activeFigure = TEAM_FIGURES[activeIndex] ?? TEAM_FIGURES[0];
+  // activeIndex is always 0–3, matching the 4-element array
+  const activeFigure = TEAM_FIGURES[activeIndex]!;
 
   useEffect(() => {
     TEAM_FIGURES.forEach(({ src }) => {
@@ -66,6 +76,12 @@ export function TeamCarouselHero() {
     }, 650);
   };
 
+  const navigateToIndex = (targetIndex: number) => {
+    if (isAnimating || targetIndex === activeIndex) return;
+    const rightOf = (activeIndex + 1) % TEAM_FIGURES.length;
+    navigate(targetIndex === rightOf ? "next" : "prev");
+  };
+
   return (
     <section
       className="about-team-hero relative min-h-screen w-full overflow-hidden supports-[height:100svh]:min-h-[100svh]"
@@ -89,7 +105,7 @@ export function TeamCarouselHero() {
           style={{ fontFamily: "Anton, sans-serif", fontSize: "clamp(90px, 28vw, 380px)", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.02em" }}
           aria-hidden="true"
         >
-          3D Shape
+          OUR TEAM
         </div>
 
         <a href="/" className="absolute left-4 top-6 z-[60] text-xs font-semibold uppercase tracking-[0.18em] text-white opacity-90 no-underline sm:left-8" aria-label="PRATIMA AI home">
@@ -100,10 +116,19 @@ export function TeamCarouselHero() {
           {TEAM_FIGURES.map((figure, index) => {
             const role: FigureRole = index === roles.center ? "center" : index === roles.left ? "left" : index === roles.right ? "right" : "back";
             return (
-              <div key={figure.src} style={figureStyle(role, isMobile)} aria-hidden={role !== "center"}>
+              <div
+                key={figure.src}
+                style={figureStyle(role, isMobile)}
+                aria-hidden={role !== "center"}
+                onClick={role !== "center" ? () => navigateToIndex(index) : undefined}
+                role={role !== "center" ? "button" : undefined}
+                tabIndex={role !== "center" ? 0 : undefined}
+                onKeyDown={role !== "center" ? (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); navigateToIndex(index); } } : undefined}
+                aria-label={role !== "center" ? `Show ${figure.name}` : undefined}
+              >
                 <img
                   src={figure.src}
-                  alt={role === "center" ? `Temporary PRATIMA AI team figurine ${index + 1}` : ""}
+                  alt={role === "center" ? `${figure.name} — ${figure.role}` : ""}
                   width="768"
                   height="1280"
                   className="h-full w-full object-contain object-bottom"
@@ -116,17 +141,29 @@ export function TeamCarouselHero() {
 
         <div className="absolute bottom-6 left-4 z-[60] max-w-80 sm:bottom-20 sm:left-24">
           <p className="mb-2 text-base font-bold uppercase tracking-[0.02em] text-white opacity-95 sm:mb-3 sm:text-[22px]">
-            People of PRATIMA
+            Meet the Team
           </p>
+          <div
+            className="team-member-info mb-4 sm:mb-5"
+            style={{ transition: "opacity 350ms cubic-bezier(0.4,0,0.2,1)" }}
+            key={activeIndex}
+          >
+            <p className="mb-1 text-lg font-semibold leading-tight text-white sm:text-2xl">
+              {activeFigure.name}
+            </p>
+            <p className="text-sm text-white opacity-80 sm:text-base">
+              {activeFigure.role}
+            </p>
+          </div>
           <p className="mb-5 hidden text-sm leading-[1.6] text-white opacity-85 sm:block">
-            Temporary character studies stand in while individual team miniatures are prepared. The people, judgement and accountability behind the work remain central.
+            The people, judgement and accountability behind PRATIMA AI. Click or use arrows to meet the team.
           </p>
           <div className="flex gap-3">
             <button
               type="button"
               className="grid h-12 w-12 place-items-center rounded-full border-2 border-white bg-transparent text-white transition-[transform,background-color] duration-150 hover:scale-[1.08] hover:bg-white/[0.12] sm:h-16 sm:w-16"
               onClick={() => navigate("prev")}
-              aria-label="Previous team figure"
+              aria-label="Previous team member"
               aria-disabled={isAnimating}
             >
               <ArrowLeft size={26} strokeWidth={2.25} />
@@ -135,7 +172,7 @@ export function TeamCarouselHero() {
               type="button"
               className="grid h-12 w-12 place-items-center rounded-full border-2 border-white bg-transparent text-white transition-[transform,background-color] duration-150 hover:scale-[1.08] hover:bg-white/[0.12] sm:h-16 sm:w-16"
               onClick={() => navigate("next")}
-              aria-label="Next team figure"
+              aria-label="Next team member"
               aria-disabled={isAnimating}
             >
               <ArrowRight size={26} strokeWidth={2.25} />
@@ -154,3 +191,4 @@ export function TeamCarouselHero() {
     </section>
   );
 }
+

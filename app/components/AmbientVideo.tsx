@@ -10,7 +10,8 @@ type AmbientVideoProps = {
 
 export function AmbientVideo({ className = "", src, poster }: AmbientVideoProps) {
   const reducedMotion = useReducedMotion();
-  const [staticMode, setStaticMode] = useState(true);
+  const [staticMode, setStaticMode] = useState(typeof window === "undefined");
+  const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
     const hints = navigator as Navigator & { connection?: { saveData?: boolean }; deviceMemory?: number };
@@ -22,7 +23,7 @@ export function AmbientVideo({ className = "", src, poster }: AmbientVideoProps)
     }));
   }, [reducedMotion]);
 
-  if (staticMode) {
+  if (staticMode || videoError) {
     return (
       <div
         className={`${className} ambient-video-poster`}
@@ -35,6 +36,7 @@ export function AmbientVideo({ className = "", src, poster }: AmbientVideoProps)
   return (
     <video
       className={className}
+      crossOrigin="anonymous"
       autoPlay
       muted
       loop
@@ -42,8 +44,10 @@ export function AmbientVideo({ className = "", src, poster }: AmbientVideoProps)
       preload="metadata"
       poster={poster}
       aria-hidden="true"
+      onError={() => setVideoError(true)}
     >
       <source src={src} type="video/mp4" />
     </video>
   );
 }
+
