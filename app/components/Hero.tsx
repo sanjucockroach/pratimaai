@@ -12,7 +12,7 @@ export function Hero() {
         <div className="home-film__sticky">
           <ScrollScrubVideo
             rootRef={heroRef}
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4"
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260729_102822_0e6c87e8-c141-4744-bf32-ad30db296371.mp4"
             poster="/assets/pratima-circuit-poster.png"
           />
           <div className="home-film__content">

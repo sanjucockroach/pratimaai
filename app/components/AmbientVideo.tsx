@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 import { shouldUseStaticMedia } from "~/lib/scroll-scrub";
 
 type AmbientVideoProps = {
@@ -33,7 +33,7 @@ export function AmbientVideo({ className = "", src, poster }: AmbientVideoProps)
   }
 
   return (
-    <motion.video
+    <video
       className={className}
       autoPlay
       muted
@@ -41,12 +41,9 @@ export function AmbientVideo({ className = "", src, poster }: AmbientVideoProps)
       playsInline
       preload="metadata"
       poster={poster}
-      initial={{ opacity: 0, scale: 1.035 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
       aria-hidden="true"
     >
       <source src={src} type="video/mp4" />
-    </motion.video>
+    </video>
   );
 }

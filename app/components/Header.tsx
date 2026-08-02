@@ -26,7 +26,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="site-header">
+    <header className={`site-header${location.pathname === "/about" ? " site-header--team" : ""}`}>
       <div className="nav-cluster nav-cluster--left">
         <Link to="/" className="brand-pill" aria-label="PRATIMA AI home">
           <img src="/assets/pratima-mark.svg" alt="" width="32" height="26" />

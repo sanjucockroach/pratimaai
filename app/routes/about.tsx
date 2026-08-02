@@ -1,8 +1,6 @@
-import { motion } from "motion/react";
 import type { MetaFunction } from "react-router";
-import { Link } from "react-router";
-import { AmbientVideo } from "~/components/AmbientVideo";
 import { ContactActions } from "~/components/ContactActions";
+import { TeamCarouselHero } from "~/components/TeamCarouselHero";
 import { siteConfig } from "~/content/site";
 
 export const meta: MetaFunction = () => [
@@ -27,23 +25,7 @@ const principles = [
 export default function AboutRoute() {
   return (
     <>
-      <section className="about-cinema" aria-labelledby="about-heading">
-        <AmbientVideo
-          className="about-cinema__video"
-          poster="/assets/hero-poster.png"
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_091828_e240eb17-6edc-4129-ad9d-98678e3fd238.mp4"
-        />
-        <div className="about-cinema__wash" />
-        <motion.div className="about-cinema__content" initial={{ opacity: 1, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-          <p className="utility-label">About PRATIMA AI</p>
-          <h1 id="about-heading"><span>Purpose.</span><span>Connected.</span></h1>
-          <p>A central intelligence connects distinct fields without flattening what makes each one different.</p>
-          <div className="about-cinema__actions">
-            <Link className="soft-button" to="#principles">How we work</Link>
-            <a className="dark-button" href={siteConfig.whatsappNumber ? `https://wa.me/${siteConfig.whatsappNumber}` : "/contact"}>Start a conversation</a>
-          </div>
-        </motion.div>
-      </section>
+      <TeamCarouselHero />
 
       <section className="about-statement">
         <div>

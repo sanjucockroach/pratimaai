@@ -38,9 +38,9 @@ export default function ServicesRoute() {
       <section className="services-cinema" aria-labelledby="services-heading">
         <motion.div
           className="services-cinema__media"
-          initial={{ opacity: 0, scale: 1.04 }}
+          initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
           aria-hidden="true"
         >
           <AmbientVideo
@@ -48,17 +48,22 @@ export default function ServicesRoute() {
             poster="/assets/pratima-circuit-poster.png"
           />
         </motion.div>
-        <div className="services-cinema__footer">
-          <motion.div initial={{ opacity: 1, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-            <p className="services-kicker"><span />Intelligence · Software · Learning</p>
-            <h1 id="services-heading"><span>Three practices.</span><span>Zero silos.</span></h1>
-            <p>Choose one discipline or connect all three around the work that needs to change.</p>
-            <ContactActions compact />
-          </motion.div>
-          <div className="services-cinema__tags" aria-label="Service areas">
-            <span>AI intelligence</span><span>Software systems</span><span>EdTech</span>
+        <motion.div
+          className="services-cinema__footer"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div>
+            <motion.p className="services-kicker" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}><span />Intelligence · Software · Learning</motion.p>
+            <motion.h1 id="services-heading" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}><span>Three practices.</span><span>Zero silos.</span></motion.h1>
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>Choose one discipline or connect all three around the work that needs to change.</motion.p>
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}><ContactActions compact /></motion.div>
           </div>
-        </div>
+          <motion.div className="services-cinema__tags" aria-label="Service areas" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <span>AI intelligence</span><span>Software systems</span><span>EdTech</span>
+          </motion.div>
+        </motion.div>
       </section>
 
       <div className="service-detail-list">

@@ -14,6 +14,9 @@ import { siteConfig } from "~/content/site";
 import "~/styles/main.css";
 
 export const links = () => [
+  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+  { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" },
   { rel: "icon", type: "image/svg+xml", href: "/assets/pratima-mark.svg" },
   { rel: "manifest", href: "/manifest.webmanifest" },
 ];
