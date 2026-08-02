@@ -3,6 +3,7 @@ import type { MetaFunction } from "react-router";
 import { AmbientVideo } from "~/components/AmbientVideo";
 import { ContactActions } from "~/components/ContactActions";
 import { servicePillars, siteConfig } from "~/content/site";
+import type { PillarId } from "~/content/site";
 
 export const meta: MetaFunction = () => [
   { title: "Services | PRATIMA AI" },
@@ -15,6 +16,13 @@ export const meta: MetaFunction = () => [
   { name: "twitter:card", content: "summary_large_image" },
   { tagName: "link", rel: "canonical", href: `${siteConfig.siteUrl}/services` },
 ];
+
+/** Map each service practice to its ambient background video. */
+const pillarVideo: Record<PillarId, string> = {
+  "ai-support": "/video/connection.mp4",
+  software: "/video/software.mp4",
+  education: "/video/learning.mp4",
+};
 
 export default function ServicesRoute() {
   const serviceSchema = servicePillars.map((pillar) => ({
@@ -69,6 +77,13 @@ export default function ServicesRoute() {
       <div className="service-detail-list">
         {servicePillars.map((pillar, index) => (
           <section key={pillar.id} id={pillar.id} className={`service-detail service-detail--${pillar.colour}`}>
+            {/* Ambient background video for each practice */}
+            <div className="service-detail__video" aria-hidden="true">
+              <AmbientVideo
+                src={pillarVideo[pillar.id]}
+                poster="/assets/pratima-circuit-poster.png"
+              />
+            </div>
             <div className="service-detail__heading">
               <p className="utility-label">Practice {String(index + 1).padStart(2, "0")}</p>
               <h2>{pillar.name}</h2>
