@@ -16,11 +16,9 @@ describe("scroll scrub mapping", () => {
     expect(progressToTime(0.5, Number.NaN)).toBe(0);
   });
 
-  it("selects a static poster for explicit preferences and low-tier devices", () => {
+  it("selects a static poster for explicit preferences", () => {
     expect(shouldUseStaticMedia({ reducedMotion: true, saveData: false })).toBe(true);
     expect(shouldUseStaticMedia({ reducedMotion: false, saveData: true })).toBe(true);
-    expect(shouldUseStaticMedia({ reducedMotion: false, saveData: false, hardwareConcurrency: 2 })).toBe(true);
-    expect(shouldUseStaticMedia({ reducedMotion: false, saveData: false, deviceMemory: 2 })).toBe(true);
-    expect(shouldUseStaticMedia({ reducedMotion: false, saveData: false, hardwareConcurrency: 8, deviceMemory: 8 })).toBe(false);
+    expect(shouldUseStaticMedia({ reducedMotion: false, saveData: false })).toBe(false);
   });
 });

@@ -7,10 +7,6 @@ interface ScrollScrubVideoProps {
   poster: string;
 }
 
-interface NavigatorWithConnection extends Navigator {
-  connection?: { saveData?: boolean };
-  deviceMemory?: number;
-}
 
 export function ScrollScrubVideo({ rootRef, src, poster }: ScrollScrubVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);

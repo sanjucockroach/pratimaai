@@ -17,7 +17,8 @@ export interface MediaHints {
 
 export function shouldUseStaticMedia({
   reducedMotion,
+  saveData,
 }: MediaHints) {
-  return reducedMotion;
+  return Boolean(reducedMotion || saveData);
 }
 
