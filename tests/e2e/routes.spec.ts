@@ -34,8 +34,16 @@ test("navigation reaches every public route", async ({ page }) => {
 test("supporting heroes express the adapted PRATIMA AI directions", async ({ page }) => {
   await page.goto("/services");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Three practices.Zero silos.");
+  await expect(page.locator(".services-cinema__media source")).toHaveAttribute(
+    "src",
+    "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4",
+  );
   await page.goto("/about");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Purpose.Connected.");
+  await expect(page.locator(".about-cinema source")).toHaveAttribute(
+    "src",
+    "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_091828_e240eb17-6edc-4129-ad9d-98678e3fd238.mp4",
+  );
 });
 
 test("contact details use the configured WhatsApp number and email", async ({ page }) => {

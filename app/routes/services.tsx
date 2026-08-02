@@ -43,7 +43,10 @@ export default function ServicesRoute() {
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           aria-hidden="true"
         >
-          <AmbientVideo src="/video/software.mp4" poster="/assets/pratima-circuit-poster.png" />
+          <AmbientVideo
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4"
+            poster="/assets/pratima-circuit-poster.png"
+          />
         </motion.div>
         <div className="services-cinema__footer">
           <motion.div initial={{ opacity: 1, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>

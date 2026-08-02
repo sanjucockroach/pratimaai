@@ -31,7 +31,7 @@ export default function AboutRoute() {
         <AmbientVideo
           className="about-cinema__video"
           poster="/assets/hero-poster.png"
-          src="/video/connection.mp4"
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_091828_e240eb17-6edc-4129-ad9d-98678e3fd238.mp4"
         />
         <div className="about-cinema__wash" />
         <motion.div className="about-cinema__content" initial={{ opacity: 1, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>

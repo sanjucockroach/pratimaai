@@ -42,7 +42,7 @@ The three `VITE_PUBLIC_*` values may be overridden in Vercel. Because they are e
 ## Assets and security
 
 - PRATIMA AI identity artwork is derived from the supplied business logo.
-- The homepage circuit film is supplied project media. Three supporting clips were downloaded from Mixkit under the Mixkit Stock Video Free License.
+- The homepage circuit film is supplied project media. The Services and About heroes use the exact supplied CloudFront media URLs; their local posters preserve the reduced-motion and data-saver fallback.
 - Inter Variable and IBM Plex Mono are self-hosted under the SIL Open Font License 1.1.
 - React Router 7.18.2 reports an advisory affecting React Server Components action handling. This site does not enable RSC, has no route actions, builds with `ssr: false`, and publishes no server bundle. Do not add RSC or a persistent React Router server without repeating the security review.
 
