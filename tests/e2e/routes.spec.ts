@@ -49,6 +49,10 @@ test("supporting heroes express the adapted PRATIMA AI directions", async ({ pag
     "src",
     "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4",
   );
+  await expect(page.locator(".services-cinema__media video")).toHaveAttribute(
+    "poster",
+    "/assets/services-hero-poster.png",
+  );
   await expect(page.locator(".services-cinema__media video")).toHaveAttribute("autoplay", "");
   await expect(page.locator(".services-cinema__media video")).toHaveAttribute("loop", "");
   await page.goto("/about");

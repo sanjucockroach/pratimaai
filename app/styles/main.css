@@ -520,7 +520,7 @@ p { max-width: 68ch; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-  .services-cinema { background: #f3f3f3 url("/assets/pratima-circuit-poster.png") center / cover no-repeat; }
+  .services-cinema { background: #f3f3f3 url("/assets/services-hero-poster.png") center / cover no-repeat; }
 }
 
 @media (min-width: 640px) {
