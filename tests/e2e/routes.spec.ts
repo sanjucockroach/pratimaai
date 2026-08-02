@@ -20,6 +20,15 @@ test("the homepage makes the offer and conversion paths clear", async ({ page })
   await expect(page.getByRole("link", { name: /Start on WhatsApp/i }).first()).toBeVisible();
   await expect(page.getByRole("link", { name: /Email us/i }).first()).toBeVisible();
   await expect(page.getByText("Learn to see brilliantly.")).toBeVisible();
+  await expect(page.locator(".scroll-film-media source")).toHaveAttribute(
+    "src",
+    "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4",
+  );
+  await expect(page.locator(".scroll-film-canvas")).toHaveCount(1);
+  const spacerHeight = await page.locator(".home-film-spacer").evaluate((element) => element.getBoundingClientRect().height);
+  const expectedSpacerHeight = await page.evaluate(() => window.innerHeight * 0.8);
+  expect(spacerHeight).toBeCloseTo(expectedSpacerHeight, 0);
+  await expect(page.getByAltText("PRATIMA AI — Connecting Dots")).toBeVisible();
 });
 
 test("navigation reaches every public route", async ({ page }) => {

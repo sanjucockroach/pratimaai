@@ -12,13 +12,13 @@ export function Hero() {
         <div className="home-film__sticky">
           <ScrollScrubVideo
             rootRef={heroRef}
-            src="/video/pratima-circuit.mp4"
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4"
             poster="/assets/pratima-circuit-poster.png"
           />
           <div className="home-film__content">
             <motion.div
               className="home-film__intro"
-              initial={{ opacity: 1, y: 12 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -34,7 +34,7 @@ export function Hero() {
 
             <motion.div
               className="home-film__headline"
-              initial={{ opacity: 1, y: 18 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.18, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -44,7 +44,7 @@ export function Hero() {
 
             <motion.aside
               className="home-film__glass-card"
-              initial={{ opacity: 1, y: 16 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.38, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >

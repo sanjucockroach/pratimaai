@@ -5,7 +5,14 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <div className="site-footer__statement">
-        <img src="/assets/pratima-mark.svg" alt="" width="96" height="78" />
+        <div className="site-footer__logo">
+          <img
+            src="/assets/pratima-lockup-transparent.png"
+            alt="PRATIMA AI — Connecting Dots"
+            width="967"
+            height="512"
+          />
+        </div>
         <p>Connecting intelligence, software and learning.</p>
       </div>
       <div className="site-footer__grid">

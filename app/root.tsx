@@ -49,6 +49,7 @@ export function Layout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
+        <noscript><style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}`}</style></noscript>
         {children}
         <ScrollRestoration />
         <Scripts />

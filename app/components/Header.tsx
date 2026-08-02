@@ -51,6 +51,14 @@ export function Header() {
         </div>
       </div>
 
+      <nav className="desktop-nav" aria-label="Primary navigation">
+        {links.map((link) => (
+          <NavLink key={link.href} to={link.href} className={({ isActive }) => (isActive ? "is-active" : undefined)}>
+            {link.label}
+          </NavLink>
+        ))}
+      </nav>
+
       <a className="project-pill" href={getWhatsAppHref()} target="_blank" rel="noreferrer">
         <span className="project-pill__grid" aria-hidden="true">
           <i /><i /><i /><i />
@@ -58,7 +66,7 @@ export function Header() {
         <span>Start a project</span>
       </a>
 
-      <nav id="primary-navigation" className={`primary-nav${open ? " is-open" : ""}`} aria-label="Primary">
+      <nav id="primary-navigation" className={`primary-nav${open ? " is-open" : ""}`} aria-label="Mobile navigation">
         <p>Explore PRATIMA AI</p>
         {links.map((link) => (
           <NavLink key={link.href} to={link.href} className={({ isActive }) => (isActive ? "is-active" : undefined)}>

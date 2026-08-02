@@ -14,6 +14,7 @@ interface NavigatorWithConnection extends Navigator {
 
 export function ScrollScrubVideo({ rootRef, src, poster }: ScrollScrubVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const targetTime = useRef(0);
   const frame = useRef<number | null>(null);
   const [ready, setReady] = useState(false);
@@ -49,10 +50,51 @@ export function ScrollScrubVideo({ rootRef, src, poster }: ScrollScrubVideoProps
       const root = rootRef.current;
       if (!root || !Number.isFinite(video.duration)) return;
       const bounds = root.getBoundingClientRect();
-      targetTime.current = progressToTime(
-        scrollProgress(bounds.top, bounds.height, window.innerHeight),
-        video.duration,
-      );
+      const progress = scrollProgress(bounds.top, bounds.height, window.innerHeight);
+      targetTime.current = progressToTime(progress, video.duration);
+
+      const canvas = canvasRef.current;
+      const context = canvas?.getContext("2d");
+      if (canvas && context) {
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+        if (canvas.width !== Math.round(width * pixelRatio) || canvas.height !== Math.round(height * pixelRatio)) {
+          canvas.width = Math.round(width * pixelRatio);
+          canvas.height = Math.round(height * pixelRatio);
+        }
+        context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        context.clearRect(0, 0, width, height);
+        context.lineWidth = 1;
+        context.setLineDash([5, 9]);
+
+        const originX = width * 0.68;
+        const originY = height * 0.64;
+        const traces = [
+          { colour: "#ff5d5b", x: width * 0.84, y: height * 0.24 },
+          { colour: "#2eb1ff", x: width * 0.92, y: height * 0.52 },
+          { colour: "#9ae265", x: width * 0.8, y: height * 0.84 },
+        ];
+
+        traces.forEach((trace, index) => {
+          context.beginPath();
+          context.strokeStyle = trace.colour;
+          context.globalAlpha = 0.16 + progress * 0.22;
+          context.moveTo(originX, originY);
+          context.bezierCurveTo(
+            originX + width * (0.05 + index * 0.018),
+            originY + (trace.y - originY) * 0.18,
+            trace.x - width * 0.04,
+            trace.y - (trace.y - originY) * 0.12,
+            trace.x,
+            trace.y,
+          );
+          context.stroke();
+        });
+        context.globalAlpha = 1;
+        context.setLineDash([]);
+      }
+
       if (frame.current === null) frame.current = window.requestAnimationFrame(easeToTarget);
     };
 
@@ -83,6 +125,7 @@ export function ScrollScrubVideo({ rootRef, src, poster }: ScrollScrubVideoProps
         </video>
       ) : null}
       <div className="scroll-film-grade" />
+      {!staticMode ? <canvas ref={canvasRef} className="scroll-film-canvas" /> : null}
     </div>
   );
 }
