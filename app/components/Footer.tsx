@@ -18,7 +18,7 @@ export function Footer() {
         <div>
           <p className="utility-label">Contact</p>
           <a href={getWhatsAppHref()}>WhatsApp</a>
-          <a href={getEmailHref()}>{siteConfig.email ?? "Email pending"}</a>
+          <a href={getEmailHref()}>{siteConfig.email}</a>
           <Link to="/contact">Contact details</Link>
         </div>
         <div>

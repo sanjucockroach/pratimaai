@@ -14,7 +14,6 @@ export const meta: MetaFunction = () => [
 ];
 
 export default function ContactRoute() {
-  const configured = Boolean(siteConfig.whatsappNumber && siteConfig.email);
   return (
     <section className="contact-page" id="contact-details">
       <div className="contact-page__intro">
@@ -28,21 +27,16 @@ export default function ContactRoute() {
         <a className="contact-option contact-option--primary" href={getWhatsAppHref("a new project")}>
           <span className="utility-label">Primary channel</span>
           <strong>WhatsApp</strong>
-          <span>{siteConfig.whatsappNumber ? "Start a direct conversation" : "Number pending configuration"}</span>
+          <span>+91 70268 11812</span>
           <i aria-hidden="true">↗</i>
         </a>
         <a className="contact-option" href={getEmailHref()}>
           <span className="utility-label">Alternative channel</span>
           <strong>Email</strong>
-          <span>{siteConfig.email ?? "Address pending configuration"}</span>
+          <span>{siteConfig.email}</span>
           <i aria-hidden="true">→</i>
         </a>
       </div>
-      {!configured ? (
-        <p className="configuration-notice" role="status">
-          Public contact details have not yet been supplied. They must be configured before this site is deployed.
-        </p>
-      ) : null}
       <aside className="contact-page__expectation">
         <p className="utility-label">What happens next</p>
         <p>We read the context, identify the most useful first question and continue the conversation directly. There is no automated sales sequence.</p>

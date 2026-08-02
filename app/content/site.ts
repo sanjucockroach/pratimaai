@@ -28,14 +28,14 @@ export interface SiteConfig {
   tagline: string;
   description: string;
   siteUrl: string;
-  email?: string;
-  whatsappNumber?: string;
+  email: string;
+  whatsappNumber: string;
   areaServed: string;
   socialLinks: ReadonlyArray<{ label: string; href: string }>;
 }
 
-const publicEmail = import.meta.env.VITE_PUBLIC_CONTACT_EMAIL?.trim() || undefined;
-const publicWhatsapp = import.meta.env.VITE_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || undefined;
+const publicEmail = import.meta.env.VITE_PUBLIC_CONTACT_EMAIL?.trim() || "pratimaai@gmail.com";
+const publicWhatsapp = import.meta.env.VITE_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || "917026811812";
 
 export const siteConfig: SiteConfig = {
   name: "PRATIMA AI",
@@ -171,12 +171,10 @@ export const processSteps = [
 ] as const;
 
 export function getWhatsAppHref(context = "a project with PRATIMA AI") {
-  if (!siteConfig.whatsappNumber) return "/contact#contact-details";
   const message = encodeURIComponent(`Hello PRATIMA AI, I would like to discuss ${context}.`);
   return `https://wa.me/${siteConfig.whatsappNumber}?text=${message}`;
 }
 
 export function getEmailHref(subject = "Project enquiry") {
-  if (!siteConfig.email) return "/contact#contact-details";
   return `mailto:${siteConfig.email}?subject=${encodeURIComponent(subject)}`;
 }

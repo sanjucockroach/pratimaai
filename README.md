@@ -11,13 +11,11 @@ npm run dev
 
 ## Public configuration
 
-Copy `.env.example` to `.env` and provide the launch values:
+The repository includes public defaults for the confirmed contact details and site URL. Copy `.env.example` to `.env` only when an environment needs to override them:
 
 - `VITE_PUBLIC_SITE_URL` — confirmed production origin, without a trailing slash.
 - `VITE_PUBLIC_WHATSAPP_NUMBER` — international digits only, including country code.
 - `VITE_PUBLIC_CONTACT_EMAIL` — public enquiry address.
-
-Until the WhatsApp number and email are present, contact actions route to the honest configuration notice on `/contact`. Do not deploy that state.
 
 ## Quality gate
 
@@ -39,7 +37,7 @@ The repository includes `vercel.json` with:
 - `build/client` as the static output directory.
 - Clean, extension-free public URLs.
 
-Configure all three `VITE_PUBLIC_*` variables in the Vercel project before the production deployment. Because these values are embedded at build time, redeploy after changing them.
+The three `VITE_PUBLIC_*` values may be overridden in Vercel. Because they are embedded at build time, redeploy after changing them.
 
 ## Assets and security
 
@@ -48,4 +46,4 @@ Configure all three `VITE_PUBLIC_*` variables in the Vercel project before the p
 - Archivo Variable, IBM Plex Sans, and IBM Plex Mono are self-hosted under the SIL Open Font License 1.1.
 - React Router 7.18.2 reports an advisory affecting React Server Components action handling. This site does not enable RSC, has no route actions, builds with `ssr: false`, and publishes no server bundle. Do not add RSC or a persistent React Router server without repeating the security review.
 
-Production deployment should wait until the contact values and public site origin are confirmed.
+The committed defaults are `https://pratima-ai.in`, WhatsApp `+91 70268 11812`, and `pratimaai@gmail.com`.

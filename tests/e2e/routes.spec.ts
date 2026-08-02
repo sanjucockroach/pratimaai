@@ -29,8 +29,8 @@ test("navigation reaches every public route", async ({ page }) => {
   }
 });
 
-test("contact details remain honest until launch configuration is supplied", async ({ page }) => {
+test("contact details use the configured WhatsApp number and email", async ({ page }) => {
   await page.goto("/contact");
-  await expect(page.getByText("Public contact details have not yet been supplied.", { exact: false })).toBeVisible();
-  await expect(page.getByRole("link", { name: /WhatsApp/ })).toHaveAttribute("href", "/contact#contact-details");
+  await expect(page.getByRole("link", { name: /WhatsApp/ })).toHaveAttribute("href", /^https:\/\/wa\.me\/917026811812/);
+  await expect(page.getByRole("link", { name: /Email/ })).toHaveAttribute("href", /^mailto:pratimaai@gmail\.com/);
 });
