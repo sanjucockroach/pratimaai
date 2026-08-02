@@ -1,4 +1,5 @@
 import { ArrowUpRight, ChevronRight } from "lucide-react";
+import { useRef } from "react";
 import type { MetaFunction } from "react-router";
 import { Link } from "react-router";
 import { ContactActions } from "~/components/ContactActions";
@@ -41,33 +42,37 @@ const insightCapabilities = [
 ] as const;
 
 export default function HomeRoute() {
+  const filmRef = useRef<HTMLElement>(null);
+
   return (
     <>
-      <Hero />
-
-      <section className="insight-stage" aria-labelledby="insight-heading">
-        <div className="insight-stage__copy">
-          <Reveal>
-            <p className="utility-label utility-label--light">Insight on demand</p>
-            <h2 id="insight-heading">Learn to see brilliantly.</h2>
-            <p>
-              Turn scattered information into a useful view of the work—then shape the software and learning systems that move it forward.
-            </p>
-            <ContactActions inverse compact />
-          </Reveal>
-        </div>
-        <div className="capability-panel">
-          {insightCapabilities.map((capability, index) => (
-            <Reveal key={capability.index} delay={300 + index * 110}>
-              <Link className="capability-row" to="/services#ai-support">
-                <span className="capability-row__index">{capability.index}</span>
-                <span className="capability-row__copy">
-                  <strong>{capability.title}<ChevronRight size={16} aria-hidden="true" /></strong>
-                  <span>{capability.body}</span>
-                </span>
-              </Link>
+      <section ref={filmRef} className="home-film" aria-labelledby="hero-heading">
+        <Hero filmRef={filmRef} />
+        <div className="home-film-spacer" aria-hidden="true" />
+        <div className="insight-stage" aria-labelledby="insight-heading">
+          <div className="insight-stage__copy">
+            <Reveal>
+              <p className="utility-label utility-label--light">Insight on demand</p>
+              <h2 id="insight-heading">Learn to see brilliantly.</h2>
+              <p>
+                Turn scattered information into a useful view of the work—then shape the software and learning systems that move it forward.
+              </p>
+              <ContactActions compact />
             </Reveal>
-          ))}
+          </div>
+          <div className="capability-panel">
+            {insightCapabilities.map((capability, index) => (
+              <Reveal key={capability.index} delay={300 + index * 110}>
+                <Link className="capability-row" to="/services#ai-support">
+                  <span className="capability-row__index">{capability.index}</span>
+                  <span className="capability-row__copy">
+                    <strong>{capability.title}<ChevronRight size={16} aria-hidden="true" /></strong>
+                    <span>{capability.body}</span>
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -123,3 +128,4 @@ export default function HomeRoute() {
     </>
   );
 }
+
