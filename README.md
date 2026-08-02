@@ -47,4 +47,4 @@ The three `VITE_PUBLIC_*` values may be overridden in Vercel. Because they are e
 - Inter Variable and IBM Plex Mono are self-hosted under the SIL Open Font License 1.1.
 - React Router 7.18.2 reports an advisory affecting React Server Components action handling. This site does not enable RSC, has no route actions, builds with `ssr: false`, and publishes no server bundle. Do not add RSC or a persistent React Router server without repeating the security review.
 
-The committed defaults are `https://pratima-ai.in`, WhatsApp `+91 70268 11812`, and `pratimaai@gmail.com`.
+The committed defaults are `https://pratimaai.com`, WhatsApp `+91 70268 11812`, and `pratimaai@gmail.com`.

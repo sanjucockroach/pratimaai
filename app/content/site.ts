@@ -32,7 +32,7 @@ export const siteConfig: SiteConfig = {
   tagline: "Connecting Dots",
   description:
     "PRATIMA AI connects applied intelligence, custom software and education platforms for organisations in India.",
-  siteUrl: import.meta.env.VITE_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://pratima-ai.in",
+  siteUrl: import.meta.env.VITE_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://pratimaai.com",
   email: publicEmail,
   whatsappNumber: publicWhatsapp,
   areaServed: "India",

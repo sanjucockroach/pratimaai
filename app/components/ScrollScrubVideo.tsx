@@ -23,13 +23,7 @@ export function ScrollScrubVideo({ rootRef, src, poster }: ScrollScrubVideoProps
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const navigatorHints = navigator as NavigatorWithConnection;
-    setStaticMode(shouldUseStaticMedia({
-      reducedMotion: media.matches,
-      saveData: Boolean(navigatorHints.connection?.saveData),
-      hardwareConcurrency: navigatorHints.hardwareConcurrency,
-      deviceMemory: navigatorHints.deviceMemory,
-    }));
+    setStaticMode(shouldUseStaticMedia({ reducedMotion: media.matches, saveData: false }));
   }, []);
 
   useEffect(() => {
@@ -38,21 +32,26 @@ export function ScrollScrubVideo({ rootRef, src, poster }: ScrollScrubVideoProps
 
     const easeToTarget = () => {
       const difference = targetTime.current - video.currentTime;
-      if (Math.abs(difference) < 0.012) {
+      if (Math.abs(difference) < 0.01) {
         video.currentTime = targetTime.current;
         frame.current = null;
         return;
       }
-      video.currentTime += difference * 0.14;
+      video.currentTime += difference * 0.2;
       frame.current = window.requestAnimationFrame(easeToTarget);
     };
 
     const updateTarget = () => {
       const root = rootRef.current;
-      if (!root || !Number.isFinite(video.duration)) return;
+      if (!root || !Number.isFinite(video.duration) || video.duration <= 0) return;
       const bounds = root.getBoundingClientRect();
       const progress = scrollProgress(bounds.top, bounds.height, window.innerHeight);
       targetTime.current = progressToTime(progress, video.duration);
+
+      const progressBar = root.querySelector<HTMLSpanElement>(".home-film__progress span");
+      if (progressBar) {
+        progressBar.style.height = `${Math.round(progress * 100)}%`;
+      }
 
       const canvas = canvasRef.current;
       const context = canvas?.getContext("2d");
@@ -131,7 +130,7 @@ export function ScrollScrubVideo({ rootRef, src, poster }: ScrollScrubVideoProps
     <div className={`scroll-film-media${ready && showVideo ? " is-ready" : ""}`} aria-hidden="true">
       <img src={poster} alt="" />
       {showVideo ? (
-        <video ref={videoRef} crossOrigin="anonymous" muted playsInline preload="auto" poster={poster}>
+        <video ref={videoRef} muted playsInline preload="auto" poster={poster}>
           <source src={src} type="video/mp4" />
         </video>
       ) : null}

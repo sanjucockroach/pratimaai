@@ -101,8 +101,8 @@ export function TeamCarouselHero() {
 
         <h1 id="about-heading" className="sr-only">Our team</h1>
         <div
-          className="pointer-events-none absolute inset-x-0 top-[18%] z-[2] flex select-none items-center justify-center whitespace-nowrap uppercase text-white"
-          style={{ fontFamily: "Anton, sans-serif", fontSize: "clamp(90px, 28vw, 380px)", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.02em" }}
+          className="pointer-events-none absolute inset-x-0 top-[22%] z-[2] flex select-none items-center justify-center whitespace-nowrap uppercase text-white opacity-90"
+          style={{ fontFamily: "Anton, sans-serif", fontSize: "clamp(45px, 14vw, 190px)", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.02em" }}
           aria-hidden="true"
         >
           OUR TEAM

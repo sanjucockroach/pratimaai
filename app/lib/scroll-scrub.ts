@@ -17,12 +17,7 @@ export interface MediaHints {
 
 export function shouldUseStaticMedia({
   reducedMotion,
-  saveData,
-  hardwareConcurrency,
-  deviceMemory,
 }: MediaHints) {
-  return reducedMotion
-    || saveData
-    || (typeof hardwareConcurrency === "number" && hardwareConcurrency <= 2)
-    || (typeof deviceMemory === "number" && deviceMemory <= 2);
+  return reducedMotion;
 }
+

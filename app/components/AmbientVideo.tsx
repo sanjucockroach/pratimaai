@@ -14,12 +14,9 @@ export function AmbientVideo({ className = "", src, poster }: AmbientVideoProps)
   const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
-    const hints = navigator as Navigator & { connection?: { saveData?: boolean }; deviceMemory?: number };
     setStaticMode(shouldUseStaticMedia({
       reducedMotion: Boolean(reducedMotion),
-      saveData: Boolean(hints.connection?.saveData),
-      hardwareConcurrency: hints.hardwareConcurrency,
-      deviceMemory: hints.deviceMemory,
+      saveData: false,
     }));
   }, [reducedMotion]);
 
@@ -36,7 +33,6 @@ export function AmbientVideo({ className = "", src, poster }: AmbientVideoProps)
   return (
     <video
       className={className}
-      crossOrigin="anonymous"
       autoPlay
       muted
       loop
