@@ -16,21 +16,16 @@ for (const route of routes) {
 
 test("the homepage makes the offer and conversion paths clear", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Clear.Precise.Automated.");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Clear.");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Precise.");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Automated.");
   await expect(page.getByRole("link", { name: /Start on WhatsApp/i }).first()).toBeVisible();
   await expect(page.getByRole("link", { name: /Email us/i }).first()).toBeVisible();
   await expect(page.getByText("Learn to see brilliantly.")).toBeVisible();
-  await expect(page.locator(".scroll-film-media source")).toHaveAttribute(
+  await expect(page.locator("video source").first()).toHaveAttribute(
     "src",
-    "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260729_102822_0e6c87e8-c141-4744-bf32-ad30db296371.mp4",
+    "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260601_110537_3a579fa0-7bbc-4d94-9d25-0e816c7840f5.mp4",
   );
-  await expect(page.locator(".scroll-film-canvas")).toHaveCount(1);
-  await expect(page.locator(".scroll-film-media video")).not.toHaveAttribute("autoplay", "");
-  await expect(page.locator(".scroll-film-media video")).not.toHaveAttribute("loop", "");
-  const spacerHeight = await page.locator(".home-film-spacer").evaluate((element) => element.getBoundingClientRect().height);
-  const expectedSpacerHeight = await page.evaluate(() => window.innerHeight * 0.8);
-  expect(spacerHeight).toBeCloseTo(expectedSpacerHeight, 0);
-  await expect(page.getByAltText("PRATIMA AI — Connecting Dots")).toBeVisible();
 });
 
 test("navigation reaches every public route", async ({ page }) => {

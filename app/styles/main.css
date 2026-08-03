@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink { animation: blink 1s step-end infinite; }
+
 @font-face {
   font-family: "Inter Variable";
   font-style: normal;
@@ -17,6 +23,11 @@
 }
 
 :root {
+  --font-heading: "Helvetica Now Display Bold", "Inter Variable", Inter, sans-serif;
+  --font-body: "Inter Variable", Inter, sans-serif;
+  --color-text: #192837;
+  --color-accent: #7342e2;
+  --color-login-bg: #f2f2ee;
   --paper: #fff;
   --ink: #090909;
   --ink-soft: #555;
@@ -255,8 +266,8 @@ p { max-width: 68ch; }
 .button--on-dark:hover { border-color: #fff; background: rgba(255, 255, 255, 0.1); }
 
 /* Home scroll film */
-.home-film { position: relative; height: 320vh; min-height: 2000px; background: #050505; }
-.home-film__sticky { position: sticky; top: 0; min-height: 100vh; height: 100svh; overflow: hidden; color: #fff; z-index: 1; }
+.home-film { position: relative; background: #050505; }
+.home-film__sticky { position: relative; min-height: 100vh; overflow: hidden; color: #fff; z-index: 1; }
 .scroll-film-media, .scroll-film-media img, .scroll-film-media video, .scroll-film-grade, .scroll-film-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .scroll-film-media img, .scroll-film-media video { object-fit: cover; }
 .scroll-film-media img { opacity: 1; transition: opacity 500ms ease; }
@@ -288,10 +299,10 @@ p { max-width: 68ch; }
 .home-film__glass-card p { margin: 0; color: rgba(255, 255, 255, 0.7); font-size: 0.84rem; line-height: 1.55; }
 .home-film__progress { position: absolute; z-index: 3; right: 17px; bottom: 32px; width: 2px; height: 64px; background: rgba(255, 255, 255, 0.2); }
 .home-film__progress span { display: block; width: 100%; height: 38%; background: #fff; }
-.home-film-spacer { height: 40vh; }
+.home-film-spacer { display: none; }
 
 /* Insight */
-.insight-stage { position: relative; z-index: 2; display: grid; width: min(calc(100% - 48px), 1400px); min-height: 75vh; margin-inline: auto; margin-bottom: 120px; padding: 70px 60px; grid-template-columns: minmax(0, 1fr) minmax(420px, 0.8fr); gap: clamp(50px, 8vw, 120px); align-items: center; color: var(--ink); background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 32px; box-shadow: 0 30px 90px rgba(0, 0, 0, 0.22); }
+.insight-stage { position: relative; z-index: 2; display: grid; width: min(calc(100% - 48px), 1400px); margin-inline: auto; margin-top: 60px; margin-bottom: 60px; padding: 70px 60px; grid-template-columns: minmax(0, 1fr) minmax(420px, 0.8fr); gap: clamp(50px, 8vw, 120px); align-items: center; color: var(--ink); background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 32px; box-shadow: 0 30px 90px rgba(0, 0, 0, 0.22); }
 .insight-stage__copy h2 { max-width: 760px; font-size: clamp(3.5rem, 6.8vw, 7.2rem); font-weight: 300; line-height: 0.88; letter-spacing: -0.065em; color: var(--ink); }
 .insight-stage__copy .utility-label--light { color: #666; }
 .insight-stage__copy > div > p:not(.utility-label) { margin: 28px 0 0; color: #333; font-size: 1rem; }

@@ -44,10 +44,29 @@ const insightCapabilities = [
 export default function HomeRoute() {
   const filmRef = useRef<HTMLElement>(null);
 
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PRATIMA AI",
+    "url": siteConfig.siteUrl,
+    "logo": `${siteConfig.siteUrl}/assets/og-pratima.png`,
+    "description": siteConfig.description,
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": siteConfig.whatsappNumber,
+      "contactType": "customer service",
+      "email": siteConfig.email,
+    },
+  };
+
   return (
     <>
-      <section ref={filmRef} className="home-film" aria-labelledby="hero-heading">
-        <Hero filmRef={filmRef} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+      />
+      <section ref={filmRef} className="home-film" aria-labelledby="spade-hero">
+        <Hero />
         <div className="home-film-spacer" aria-hidden="true" />
         <div className="insight-stage" aria-labelledby="insight-heading">
           <div className="insight-stage__copy">
