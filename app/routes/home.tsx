@@ -67,7 +67,6 @@ export default function HomeRoute() {
       />
       <section ref={filmRef} className="home-film" aria-labelledby="spade-hero">
         <Hero />
-        <div className="home-film-spacer" aria-hidden="true" />
         <div className="insight-stage" aria-labelledby="insight-heading">
           <div className="insight-stage__copy">
             <Reveal>

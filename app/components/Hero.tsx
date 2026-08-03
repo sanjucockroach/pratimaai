@@ -22,6 +22,14 @@ function BackgroundVideo() {
     const video = videoRef.current;
     if (!video) return;
 
+    // Ensure video plays smoothly on all devices
+    const playVideo = () => {
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+    playVideo();
+
     const handleMouseMove = (e: MouseEvent) => {
       if (window.innerWidth < 1024) return;
       const duration = video.duration;
@@ -38,21 +46,9 @@ function BackgroundVideo() {
       prevXRef.current = e.clientX;
     };
 
-    const setupMobileAutoplay = () => {
-      if (window.innerWidth < 1024 && video) {
-        video.autoplay = true;
-        video.play().catch(() => {});
-      }
-    };
-
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("resize", setupMobileAutoplay);
-
-    setupMobileAutoplay();
-
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("resize", setupMobileAutoplay);
     };
   }, []);
 
@@ -60,16 +56,17 @@ function BackgroundVideo() {
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none w-full h-full bg-[#e8e8e6]">
       <video
         ref={videoRef}
+        autoPlay
+        loop
         muted
         playsInline
         preload="auto"
-        className="w-full h-full object-cover opacity-100 object-right lg:object-right-bottom"
-        poster="/assets/pratima-circuit-poster.png"
+        className="w-full h-full object-cover opacity-100 object-center lg:object-right-bottom"
       >
         <source src={VIDEO_SRC} type="video/mp4" />
       </video>
-      {/* Light soft edge gradient: text remains readable while video shines with 20%+ increased visibility across the hero */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#e8e8e6]/80 via-[#e8e8e6]/40 via-30% to-transparent pointer-events-none" />
+      {/* Responsive soft edge gradient: text remains crystal clear while video animation shines brightly */}
+      <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-[#e8e8e6]/90 via-[#e8e8e6]/50 via-40% to-transparent pointer-events-none" />
     </div>
   );
 }
@@ -86,13 +83,13 @@ function ServicePills() {
   };
 
   return (
-    <div className="w-full max-w-2xl mt-8">
-      <h2 className="text-xl sm:text-2xl font-medium tracking-tight mb-1 text-[#090909]">
+    <div className="w-full max-w-2xl mt-6 sm:mt-8">
+      <h2 className="text-lg sm:text-2xl font-medium tracking-tight mb-1 text-[#090909]">
         What sort of practice do you need?
       </h2>
-      <p className="text-xs sm:text-sm text-[#555555] mb-5">Select all that apply</p>
+      <p className="text-xs sm:text-sm text-[#555555] mb-4 sm:mb-5">Select all that apply</p>
 
-      <div className="flex flex-wrap gap-3 mb-6">
+      <div className="flex flex-wrap gap-2.5 sm:gap-3 mb-6">
         {PRATIMA_PRACTICES.map((option) => {
           const isActive = selectedServices.includes(option);
           return (
@@ -101,7 +98,7 @@ function ServicePills() {
               type="button"
               onClick={() => toggleService(option)}
               whileTap={{ scale: 0.96 }}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all cursor-pointer ${
                 isActive
                   ? "bg-[#ffbe4a] text-[#090909] font-semibold shadow-md shadow-amber-500/25"
                   : "bg-white/90 text-[#090909] border border-black/10 hover:bg-white"
@@ -162,7 +159,7 @@ function ServicePills() {
 
 export function Hero() {
   return (
-    <div className="relative w-full min-h-[85vh] flex flex-col justify-center overflow-hidden text-[#090909] bg-[#e8e8e6] py-16 sm:py-24">
+    <div className="relative w-full min-h-[85vh] flex flex-col justify-center overflow-hidden text-[#090909] bg-[#e8e8e6] py-12 sm:py-20 lg:py-24">
       <BackgroundVideo />
 
       <div className="relative z-10 w-[var(--content)] mx-auto px-4 sm:px-6">
@@ -175,7 +172,7 @@ export function Hero() {
             </p>
           </div>
           {/* Pushed Extreme Right in the same line */}
-          <div className="flex items-center gap-4 text-xs font-medium text-[#090909] sm:ml-auto shrink-0" aria-label="Three practices">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-medium text-[#090909] sm:ml-auto shrink-0" aria-label="Three practices">
             <span className="inline-flex items-center gap-1.5"><i className="signal signal--coral" />AI Intelligence</span>
             <span className="inline-flex items-center gap-1.5"><i className="signal signal--blue" />Software</span>
             <span className="inline-flex items-center gap-1.5"><i className="signal signal--green" />EdTech</span>
@@ -191,14 +188,14 @@ export function Hero() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               {/* Vertical Headline: Each word on its own line with 5% line spacing */}
-              <h1 id="spade-hero" className="text-5xl sm:text-7xl lg:text-[96px] font-light tracking-tight leading-[1.08] mb-8 select-none flex flex-col gap-2 sm:gap-3">
+              <h1 id="spade-hero" className="text-4xl sm:text-7xl lg:text-[96px] font-light tracking-tight leading-[1.08] mb-6 sm:mb-8 select-none flex flex-col gap-1.5 sm:gap-3">
                 <span className="block text-[#ff5d5b]">Clear.</span>
                 <span className="block text-[#2eb1ff]">Precise.</span>
                 <span className="block text-[#ffbe4a]">Connected.</span>
               </h1>
 
               {/* Action Buttons using Logo Brand Colors */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-6">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-6">
                 {/* Primary WhatsApp Action in Logo Amber Brand Color */}
                 <motion.a
                   href={getWhatsAppHref("a new project")}
@@ -241,7 +238,7 @@ export function Hero() {
           {/* Glass Card Column */}
           <div className="lg:col-span-4 lg:justify-self-end">
             <motion.aside
-              className="w-full sm:max-w-sm p-6 rounded-3xl bg-white/90 backdrop-blur-md border border-black/10 shadow-xl"
+              className="w-full sm:max-w-sm p-5 sm:p-6 rounded-3xl bg-white/90 backdrop-blur-md border border-black/10 shadow-xl"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.38, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -250,7 +247,7 @@ export function Hero() {
                 <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />
                 Live operating view
               </div>
-              <strong className="block text-xl font-medium mb-2 text-[#090909]">Connecting dots</strong>
+              <strong className="block text-lg sm:text-xl font-medium mb-2 text-[#090909]">Connecting dots</strong>
               <p className="text-xs sm:text-sm text-[#555555] leading-relaxed">
                 See the people, the work and the system as one picture — instead of three separate problems.
               </p>

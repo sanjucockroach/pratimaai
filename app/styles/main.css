@@ -455,9 +455,9 @@ p { max-width: 68ch; }
   .contact-actions { width: 100%; flex-direction: column; align-items: stretch; }
   .button { width: 100%; }
 
-  .home-film { height: 260vh; min-height: 1500px; }
-  .scroll-film-media { inset: 10%; width: 80%; height: 80%; margin: auto; }
-  .scroll-film-grade { inset: -14%; width: 128%; height: 128%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.74)); }
+  .home-film { height: auto; min-height: 0; }
+  .scroll-film-media { inset: 0; width: 100%; height: 100%; margin: 0; }
+  .scroll-film-grade { inset: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.74)); }
   .home-film__content { width: var(--content); padding: 94px 0 24px; grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto auto; gap: 20px; }
   .home-film__intro { grid-row: 1; }
   .home-film__intro > p:last-child { max-width: 32ch; font-size: 0.82rem; }
@@ -470,7 +470,7 @@ p { max-width: 68ch; }
   .home-film__glass-card { width: 100%; padding: 17px; grid-column: 1; grid-row: 5; border-radius: 18px; }
   .home-film__glass-card > div { margin-bottom: 20px; }
   .home-film__progress { display: none; }
-  .home-film-spacer { height: 80vh; }
+  .home-film-spacer { display: none; }
 
   .insight-stage { display: block; min-height: 0; padding: 110px 16px; }
   .insight-stage__copy h2 { font-size: clamp(4rem, 18vw, 6.3rem); }
@@ -497,7 +497,7 @@ p { max-width: 68ch; }
   .work-preview h2, .closing-contact h2 { font-size: clamp(3.6rem, 16vw, 5.5rem); }
   .work-preview > div:last-child, .closing-contact > div:last-child { margin-top: 54px; }
 
-  .services-cinema__media { inset: 10%; width: 80%; height: 80%; margin: auto; }
+  .services-cinema__media { inset: 0; width: 100%; height: 100%; margin: 0; }
   .services-cinema__footer { display: block; min-height: 75%; padding: 160px 16px 28px; }
   .services-cinema h1 { font-size: clamp(4rem, 17vw, 6rem); }
   .services-cinema__tags { margin-top: 26px; justify-content: flex-start; }
