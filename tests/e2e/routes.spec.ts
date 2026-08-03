@@ -18,10 +18,10 @@ test("the homepage makes the offer and conversion paths clear", async ({ page })
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Clear.");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Precise.");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Automated.");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Connected.");
   await expect(page.getByRole("link", { name: /Start on WhatsApp/i }).first()).toBeVisible();
   await expect(page.getByRole("link", { name: /Email us/i }).first()).toBeVisible();
-  await expect(page.getByText("Learn to see brilliantly.")).toBeVisible();
+  await expect(page.getByText("Learn to see clearly.")).toBeVisible();
   await expect(page.locator("video source").first()).toHaveAttribute(
     "src",
     "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260601_110537_3a579fa0-7bbc-4d94-9d25-0e816c7840f5.mp4",
@@ -39,7 +39,7 @@ test("navigation reaches every public route", async ({ page }) => {
 
 test("supporting heroes express the adapted PRATIMA AI directions", async ({ page }) => {
   await page.goto("/services");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Three practices.Zero silos.");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Three practices.One line of sight.");
   await expect(page.locator(".services-cinema__media source")).toHaveAttribute(
     "src",
     "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4",

@@ -83,7 +83,7 @@ export default function ContactRoute() {
             variants={fadeUp}
             className="text-[#444444] text-base sm:text-lg leading-relaxed mb-8 max-w-[560px]"
           >
-            Zero stress, total control. A useful first message names the organisation, the people affected, the current problem and the result you are trying to reach. PRATIMA AI keeps you covered with unbreakable support.
+            A useful first message names the organisation, the people it affects, the problem as it stands today, and what a good outcome would look like. That&apos;s enough for us to start.
           </motion.p>
 
           {/* Action Cards & Buttons using PRATIMA AI Logo Brand Colors */}

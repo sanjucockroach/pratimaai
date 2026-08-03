@@ -31,7 +31,7 @@ export const siteConfig: SiteConfig = {
   name: "PRATIMA AI",
   tagline: "Connecting Dots",
   description:
-    "PRATIMA AI connects applied intelligence, custom software and education platforms for organisations in India.",
+    "PRATIMA AI — Connecting Dots. One team connecting applied intelligence, custom software and education platforms for organisations across India.",
   siteUrl: import.meta.env.VITE_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://pratimaai.com",
   email: publicEmail,
   whatsappNumber: publicWhatsapp,
@@ -94,7 +94,7 @@ export const servicePillars: readonly ServicePillar[] = [
     shortName: "Schools and EdTech",
     colour: "green",
     summary:
-      "AI-aware tools and platforms built for educators, institutions and the practical realities of learning environments.",
+      "A platform doesn't make a school AI-ready. A teacher who trusts it does. We build both.",
     suitableFor: [
       "Schools exploring responsible use of AI",
       "Education teams planning digital learning services",
@@ -117,7 +117,7 @@ export const servicePillars: readonly ServicePillar[] = [
 export const processSteps = [
   {
     name: "Understand",
-    detail: "Clarify the people, work, constraints and decision the project must support.",
+    detail: "We ask the people who'll actually use it before we ask what the org chart wants.",
   },
   {
     name: "Design",
@@ -129,7 +129,7 @@ export const processSteps = [
   },
   {
     name: "Support",
-    detail: "Observe real use, resolve issues and improve the system without losing its purpose.",
+    detail: "We measure success by whether the system is still trusted, twelve months later.",
   },
 ] as const;
 

@@ -72,9 +72,9 @@ export default function HomeRoute() {
           <div className="insight-stage__copy">
             <Reveal>
               <p className="utility-label utility-label--light">Insight on demand</p>
-              <h2 id="insight-heading">Learn to see brilliantly.</h2>
+              <h2 id="insight-heading">Learn to see clearly.</h2>
               <p>
-                Turn scattered information into a useful view of the work—then shape the software and learning systems that move it forward.
+                Most teams aren&apos;t short on information — they&apos;re buried in it. We turn what&apos;s scattered into one useful view, then build the software and learning systems that act on it.
               </p>
               <ContactActions compact />
             </Reveal>

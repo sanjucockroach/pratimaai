@@ -64,7 +64,7 @@ export default function ServicesRoute() {
         >
           <div>
             <motion.p className="services-kicker" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}><span />Intelligence · Software · Learning</motion.p>
-            <motion.h1 id="services-heading" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}><span>Three practices.</span><span>Zero silos.</span></motion.h1>
+            <motion.h1 id="services-heading" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}><span>Three practices.</span><span>One line of sight.</span></motion.h1>
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>Choose one discipline or connect all three around the work that needs to change.</motion.p>
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}><ContactActions compact /></motion.div>
           </div>
@@ -92,7 +92,7 @@ export default function ServicesRoute() {
             <div className="service-detail__columns">
               <div><h3>Suitable for</h3><ul>{pillar.suitableFor.map((item) => <li key={item}>{item}</li>)}</ul></div>
               <div><h3>What we can shape</h3><ul>{pillar.capabilities.map((item) => <li key={item}>{item}</li>)}</ul></div>
-              <div><h3>What remains</h3><ul>{pillar.outcomes.map((item) => <li key={item}>{item}</li>)}</ul></div>
+              <div><h3>What you actually get</h3><ul>{pillar.outcomes.map((item) => <li key={item}>{item}</li>)}</ul></div>
             </div>
             <ContactActions context={pillar.cta.toLowerCase()} compact />
           </section>

@@ -17,7 +17,7 @@ export const meta: MetaFunction = () => [
 
 const principles = [
   ["Start with the work", "Technology is a response to a real operating or learning need, not the opening assumption."],
-  ["Make the connection visible", "People should understand what a system uses, changes and returns to them."],
+  ["Make the connection visible", "If a system can't explain its own answer, we don't consider it finished."],
   ["Build for operation", "A release matters when the organisation can use, support and improve it."],
   ["Keep people responsible", "AI can assist decisions and work. Human judgement and accountability remain part of the system."],
 ] as const;

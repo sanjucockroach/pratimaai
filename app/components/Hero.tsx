@@ -171,7 +171,7 @@ export function Hero() {
           <div>
             <p className="utility-label mb-1">PRATIMA AI / CONNECTING DOTS</p>
             <p className="text-[#444444] text-xs sm:text-sm max-w-lg">
-              One practice connecting business intelligence, custom software and learning systems.
+              One team owns the whole picture — not four vendors pointing fingers.
             </p>
           </div>
           {/* Pushed Extreme Right in the same line */}
@@ -194,7 +194,7 @@ export function Hero() {
               <h1 id="spade-hero" className="text-5xl sm:text-7xl lg:text-[96px] font-light tracking-tight leading-[1.08] mb-8 select-none flex flex-col gap-2 sm:gap-3">
                 <span className="block text-[#ff5d5b]">Clear.</span>
                 <span className="block text-[#2eb1ff]">Precise.</span>
-                <span className="block text-[#ffbe4a]">Automated.</span>
+                <span className="block text-[#ffbe4a]">Connected.</span>
               </h1>
 
               {/* Action Buttons using Logo Brand Colors */}
@@ -252,7 +252,7 @@ export function Hero() {
               </div>
               <strong className="block text-xl font-medium mb-2 text-[#090909]">Connecting dots</strong>
               <p className="text-xs sm:text-sm text-[#555555] leading-relaxed">
-                See the work, the system and the people it serves as one connected picture.
+                See the people, the work and the system as one picture — instead of three separate problems.
               </p>
             </motion.aside>
           </div>
