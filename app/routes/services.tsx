@@ -22,6 +22,7 @@ const pillarVideo: Record<PillarId, string> = {
   "ai-support": "/video/connection.mp4",
   software: "/video/software.mp4",
   education: "/video/learning.mp4",
+  "crm-lms": "/video/software.mp4",
 };
 
 export default function ServicesRoute() {
@@ -65,11 +66,11 @@ export default function ServicesRoute() {
           <div>
             <motion.p className="services-kicker" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}><span />Intelligence · Software · Learning</motion.p>
             <motion.h1 id="services-heading" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}><span>Three practices.</span><span>One line of sight.</span></motion.h1>
-            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>Choose one discipline or connect all three around the work that needs to change.</motion.p>
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>Choose one discipline or connect all four around the work that needs to change.</motion.p>
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}><ContactActions compact /></motion.div>
           </div>
           <motion.div className="services-cinema__tags" aria-label="Service areas" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-            <span>AI intelligence</span><span>Software systems</span><span>EdTech</span>
+            <span>AI intelligence</span><span>Software systems</span><span>EdTech</span><span>AI CRM & LMS</span>
           </motion.div>
         </motion.div>
       </section>

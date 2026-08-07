@@ -15,6 +15,7 @@ export const TEAM_FIGURES: readonly TeamMember[] = [
   { name: "Sanjeeva Reddy", role: "CTO", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/3.4df853b4.png", bg: "#6BBF7A", panel: "#85CC92" },
   { name: "Riya", role: "CFO & HR", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/2.b977faab.png", bg: "#E882B4", panel: "#ED9DC4" },
   { name: "Varun", role: "President", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/4.4457fbce.png", bg: "#6EB5FF", panel: "#8DC4FF" },
+  { name: "Sai Dhanush", role: "Vice President", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/1.02464a56.png", bg: "#F4845F", panel: "#F79B7F" },
 ] as const;
 
 const grain = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E")`;
@@ -44,8 +45,8 @@ export function TeamCarouselHero() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const unlockTimer = useRef<number | null>(null);
-  const roles = carouselRoles(activeIndex);
-  // activeIndex is always 0–3, matching the 4-element array
+  const roles = carouselRoles(activeIndex, TEAM_FIGURES.length);
+  // activeIndex is always 0–4, matching the 5-element array
   const activeFigure = TEAM_FIGURES[activeIndex]!;
 
   useEffect(() => {
@@ -117,7 +118,7 @@ export function TeamCarouselHero() {
             const role: FigureRole = index === roles.center ? "center" : index === roles.left ? "left" : index === roles.right ? "right" : "back";
             return (
               <div
-                key={figure.src}
+                key={`${figure.name}-${index}`}
                 style={figureStyle(role, isMobile)}
                 aria-hidden={role !== "center"}
                 onClick={role !== "center" ? () => navigateToIndex(index) : undefined}
@@ -185,7 +186,7 @@ export function TeamCarouselHero() {
           className="absolute bottom-6 right-4 z-[60] flex items-center gap-2 uppercase text-white opacity-95 no-underline transition-opacity duration-200 hover:opacity-100 sm:bottom-20 sm:right-10"
           style={{ fontFamily: "Anton, sans-serif", fontSize: "clamp(20px, 4vw, 56px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1 }}
         >
-          Discover it <ArrowRight className="h-5 w-5 sm:h-8 sm:w-8" strokeWidth={2.25} />
+          Discover Us <ArrowRight className="h-5 w-5 sm:h-8 sm:w-8" strokeWidth={2.25} />
         </a>
       </div>
     </section>

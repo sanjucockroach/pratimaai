@@ -1,5 +1,5 @@
-export type PillarId = "ai-support" | "software" | "education";
-export type PillarColour = "coral" | "blue" | "green";
+export type PillarId = "ai-support" | "software" | "education" | "crm-lms";
+export type PillarColour = "coral" | "blue" | "green" | "amber";
 
 export interface ServicePillar {
   id: PillarId;
@@ -111,6 +111,30 @@ export const servicePillars: readonly ServicePillar[] = [
       "An implementation path institutions can operate",
     ],
     cta: "Discuss an education project",
+  },
+  {
+    id: "crm-lms",
+    name: "CRM and LMS Portals with AI Agents",
+    shortName: "AI CRM & LMS",
+    colour: "amber",
+    summary:
+      "Integrated CRM and LMS portals built with native AI agent infrastructure and connected pipelines rather than rigid traditional software suites.",
+    suitableFor: [
+      "Organisations replacing legacy, siloed CRM or LMS tools",
+      "Teams deploying autonomous AI agents into client and student operations",
+      "Institutions requiring adaptive learning workflows and unified client portals",
+    ],
+    capabilities: [
+      "AI agent orchestration and automated workflow intelligence",
+      "Adaptive learning engines, progress tracking and institutional portals",
+      "Custom unified pipelines connecting CRM data to operational systems",
+    ],
+    outcomes: [
+      "A unified, AI-native CRM and LMS platform",
+      "Intelligent AI agents running repetitive customer and student tasks",
+      "An extensible system architecture your team completely owns",
+    ],
+    cta: "Discuss a CRM or LMS build",
   },
 ] as const;
 
