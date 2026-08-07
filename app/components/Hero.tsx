@@ -61,12 +61,12 @@ function BackgroundVideo() {
         muted
         playsInline
         preload="auto"
-        className="w-full h-full object-cover opacity-100 object-center lg:object-right-bottom"
+        className="w-full h-full object-cover opacity-100 object-[20%_center] lg:object-right-bottom"
       >
         <source src={VIDEO_SRC} type="video/mp4" />
       </video>
       {/* Responsive soft edge gradient: text remains crystal clear while video animation shines brightly */}
-      <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-[#e8e8e6]/90 via-[#e8e8e6]/50 via-40% to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-[#e8e8e6]/85 via-[#e8e8e6]/40 via-30% to-transparent pointer-events-none" />
     </div>
   );
 }
