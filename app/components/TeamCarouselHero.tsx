@@ -8,14 +8,15 @@ interface TeamMember {
   src: string;
   bg: string;
   panel: string;
+  linkedinUrl: string;
 }
 
 export const TEAM_FIGURES: readonly TeamMember[] = [
-  { name: "Prashanth", role: "CEO & Founder", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/1.02464a56.png", bg: "#F4845F", panel: "#F79B7F" },
-  { name: "Sanjeeva Reddy", role: "CTO", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/3.4df853b4.png", bg: "#6BBF7A", panel: "#85CC92" },
-  { name: "Riya", role: "CFO & HR", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/2.b977faab.png", bg: "#E882B4", panel: "#ED9DC4" },
-  { name: "Varun", role: "President", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/4.4457fbce.png", bg: "#6EB5FF", panel: "#8DC4FF" },
-  { name: "Sai Dhanush", role: "Vice President", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/1.02464a56.png", bg: "#F4845F", panel: "#F79B7F" },
+  { name: "Prashanth", role: "CEO & Founder", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/1.02464a56.png", bg: "#F4845F", panel: "#F79B7F", linkedinUrl: "https://www.linkedin.com/company/pratima-ai" },
+  { name: "Sanjeeva Reddy", role: "CTO", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/3.4df853b4.png", bg: "#6BBF7A", panel: "#85CC92", linkedinUrl: "https://www.linkedin.com/company/pratima-ai" },
+  { name: "Riya", role: "CFO & HR", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/2.b977faab.png", bg: "#E882B4", panel: "#ED9DC4", linkedinUrl: "https://www.linkedin.com/company/pratima-ai" },
+  { name: "Varun", role: "President", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/4.4457fbce.png", bg: "#6EB5FF", panel: "#8DC4FF", linkedinUrl: "https://www.linkedin.com/company/pratima-ai" },
+  { name: "Sai Dhanush", role: "Vice President", src: "https://fifth-gentle-45902158.figma.site/_components/v2/4de492f6d9cf8244ad5293233e5c6f52407d42fc/1.02464a56.png", bg: "#F4845F", panel: "#F79B7F", linkedinUrl: "https://www.linkedin.com/company/pratima-ai" },
 ] as const;
 
 const grain = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E")`;
@@ -182,11 +183,13 @@ export function TeamCarouselHero() {
         </div>
 
         <a
-          href="#principles"
+          href={activeFigure.linkedinUrl}
+          target="_blank"
+          rel="noreferrer"
           className="absolute bottom-6 right-4 z-[60] flex items-center gap-2 uppercase text-white opacity-95 no-underline transition-opacity duration-200 hover:opacity-100 sm:bottom-20 sm:right-10"
           style={{ fontFamily: "Anton, sans-serif", fontSize: "clamp(20px, 4vw, 56px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1 }}
         >
-          Discover Us <ArrowRight className="h-5 w-5 sm:h-8 sm:w-8" strokeWidth={2.25} />
+          Discover Me <ArrowRight className="h-5 w-5 sm:h-8 sm:w-8" strokeWidth={2.25} />
         </a>
       </div>
     </section>

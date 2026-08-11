@@ -6,4 +6,7 @@ export default [
   route("work", "routes/work.tsx"),
   route("about", "routes/about.tsx"),
   route("contact", "routes/contact.tsx"),
+  route("blog", "routes/blog.tsx"),
+  route("blog/:slug", "routes/blog.$slug.tsx"),
+  route("admin", "routes/admin.tsx"),
 ] satisfies RouteConfig;

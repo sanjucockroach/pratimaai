@@ -53,7 +53,7 @@ test("supporting heroes express the adapted PRATIMA AI directions", async ({ pag
   await page.goto("/about");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Our team");
   await expect(page.getByText("3D Shape")).toBeVisible();
-  await expect(page.getByRole("link", { name: /Discover Us/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Discover Me/i })).toBeVisible();
   await expect(page.locator(".about-team-hero img")).toHaveCount(5);
   await expect(page.getByRole("button", { name: "Previous team figure" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Next team figure" })).toBeVisible();

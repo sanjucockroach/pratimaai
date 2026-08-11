@@ -11,6 +11,7 @@ import type { ReactNode } from "react";
 import { Footer } from "~/components/Footer";
 import { Header } from "~/components/Header";
 import { siteConfig } from "~/content/site";
+import { Chatbot } from "~/components/Chatbot";
 import "~/styles/main.css";
 
 export const links = () => [
@@ -70,6 +71,7 @@ export default function App() {
         <Outlet />
       </main>
       <Footer />
+      <Chatbot />
     </>
   );
 }

@@ -21,6 +21,7 @@ export function Footer() {
           <Link to="/services">Services</Link>
           <Link to="/work">Work</Link>
           <Link to="/about">About</Link>
+          <Link to="/blog">Blog & Views</Link>
         </div>
         <div>
           <p className="utility-label">Contact</p>
