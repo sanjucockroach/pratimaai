@@ -77,19 +77,16 @@ export function Chatbot() {
 
   return (
     <div className="fixed bottom-5 right-5 z-[90] font-sans">
-      {/* Floating Launcher Button with PRATIMA AI Mark */}
+      {/* Floating Launcher Button with PRATIMA AI Mark (Icon Only) */}
       {!isOpen && (
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="group flex items-center gap-3 px-4 py-3 rounded-full bg-[#090909] text-white shadow-2xl hover:scale-105 transition-all duration-200 border border-white/20 cursor-pointer"
+          className="group relative w-14 h-14 rounded-full bg-[#090909] text-white shadow-2xl hover:scale-105 transition-all duration-200 border border-white/20 flex items-center justify-center cursor-pointer"
           aria-label="Open PRATIMA AI Assistant"
         >
-          <div className="w-7 h-7 rounded-full bg-white/10 p-1 flex items-center justify-center">
-            <img src="/assets/pratima-mark.svg" alt="PRATIMA AI" className="w-5 h-5 object-contain" />
-          </div>
-          <span className="text-xs font-semibold tracking-wide">Ask PRATIMA AI</span>
-          <span className="w-2 h-2 rounded-full bg-[#9ae265] animate-pulse" />
+          <img src="/assets/pratima-mark.svg" alt="PRATIMA AI" className="w-7 h-7 object-contain group-hover:scale-105 transition-transform" />
+          <span className="absolute top-1 right-1 w-3 h-3 rounded-full bg-[#9ae265] ring-2 ring-[#090909] animate-pulse" />
         </button>
       )}
 
@@ -104,10 +101,6 @@ export function Chatbot() {
               </div>
               <div>
                 <strong className="block text-sm font-semibold leading-tight">PRATIMA AI Assistant</strong>
-                <span className="text-[10px] text-white/60 font-mono flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#9ae265]" />
-                  RAG Company Knowledge
-                </span>
               </div>
             </div>
             <button

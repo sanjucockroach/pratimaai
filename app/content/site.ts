@@ -24,7 +24,7 @@ export interface SiteConfig {
   socialLinks: ReadonlyArray<{ label: string; href: string }>;
 }
 
-const publicEmail = import.meta.env.VITE_PUBLIC_CONTACT_EMAIL?.trim() || "pratimaai@gmail.com";
+const publicEmail = import.meta.env.VITE_PUBLIC_CONTACT_EMAIL?.trim() || "infopratimaai@gmail.com";
 const publicWhatsapp = import.meta.env.VITE_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || "917026811812";
 
 export const siteConfig: SiteConfig = {

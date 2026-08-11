@@ -284,7 +284,7 @@ export default function SingleBlogRoute() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !authorName.trim() || !content.trim()}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#090909] text-white text-xs font-semibold hover:bg-[#ffbe4a] hover:text-[#090909] transition-all cursor-pointer disabled:opacity-50"
+                  className="btn-primary inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer disabled:opacity-50"
                 >
                   <span>Post View</span>
                   <Send size={13} />

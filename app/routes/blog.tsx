@@ -56,20 +56,24 @@ export default function BlogRoute() {
 
         {/* Category Filters */}
         <div className="flex flex-wrap gap-2 sm:gap-3 mb-12 border-b border-black/10 pb-6">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all cursor-pointer ${
-                activeCategory === cat
-                  ? "bg-[#090909] text-white shadow-sm"
-                  : "bg-white border border-black/10 text-[#555555] hover:text-[#090909] hover:bg-neutral-100"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+          {CATEGORIES.map((cat) => {
+            const isActive = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setActiveCategory(cat)}
+                style={
+                  isActive
+                    ? { backgroundColor: "#090909", color: "#ffffff", borderColor: "#090909" }
+                    : { backgroundColor: "#ffffff", color: "#444444", borderColor: "rgba(0,0,0,0.12)" }
+                }
+                className="px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all cursor-pointer border shadow-sm hover:scale-[1.02]"
+              >
+                {cat}
+              </button>
+            );
+          })}
         </div>
 
         {/* Featured Blog Card (if viewing All) */}

@@ -197,7 +197,7 @@ export default function AdminRoute() {
             <button
               type="submit"
               disabled={isVerifying}
-              className="w-full py-3 rounded-xl bg-[#090909] text-white font-semibold text-xs uppercase tracking-wider hover:bg-[#ffbe4a] hover:text-[#090909] transition-all cursor-pointer mt-4 disabled:opacity-50"
+              className="btn-primary w-full py-3 rounded-xl font-semibold text-xs uppercase tracking-wider transition-all cursor-pointer mt-4 disabled:opacity-50"
             >
               {isVerifying ? "Verifying..." : "Sign In"}
             </button>
@@ -223,7 +223,7 @@ export default function AdminRoute() {
             <button
               type="button"
               onClick={() => openEditor()}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#090909] text-white text-xs font-semibold hover:bg-[#ffbe4a] hover:text-[#090909] transition-all cursor-pointer shadow-sm"
+              className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer shadow-sm"
             >
               <Plus size={14} />
               <span>Create Blog</span>
@@ -231,7 +231,7 @@ export default function AdminRoute() {
             <button
               type="button"
               onClick={handleLogout}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-black/10 text-xs font-semibold hover:bg-neutral-100 transition-all cursor-pointer text-neutral-600"
+              className="btn-secondary inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer"
             >
               <LogOut size={14} />
               <span>Log Out</span>
@@ -465,7 +465,7 @@ export default function AdminRoute() {
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl bg-[#090909] text-white hover:bg-[#ffbe4a] hover:text-[#090909] font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  className="btn-primary w-full py-3 rounded-xl font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
                   <Save size={14} />
                   <span>Save Post</span>
