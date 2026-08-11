@@ -72,8 +72,35 @@ export default function SingleBlogRoute() {
     );
   }
 
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": post.bannerImage.startsWith("http") ? post.bannerImage : `${siteConfig.siteUrl}${post.bannerImage}`,
+    "datePublished": post.publishedAt,
+    "author": {
+      "@type": "Person",
+      "name": post.author.name,
+      "jobTitle": post.author.role,
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": siteConfig.name,
+      "url": siteConfig.siteUrl,
+      "logo": `${siteConfig.siteUrl}/assets/og-pratima.png`,
+    },
+    "mainEntityOfPage": `${siteConfig.siteUrl}/blog/${post.slug}`,
+  };
+
   return (
     <article className="w-full min-h-screen bg-[#fafafa] text-[#090909] py-20 sm:py-28 font-sans">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(blogSchema).replace(/</g, "\\u003c"),
+        }}
+      />
       <div className="w-[var(--content)] max-w-4xl mx-auto px-4 sm:px-6">
         {/* Back Link */}
         <Link

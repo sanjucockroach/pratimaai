@@ -1,4 +1,32 @@
+# Standard search crawlers
 User-agent: *
+Disallow: /admin
+Disallow: /admin/
+Allow: /
+
+# AI crawlers — allowing citation and retrieval in ChatGPT, Perplexity, Gemini, Claude, and Apple Intelligence
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://pratimaai.com/sitemap.xml

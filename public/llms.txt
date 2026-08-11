@@ -1,0 +1,27 @@
+# PRATIMA AI
+
+> PRATIMA AI (Connecting Dots) is an India-first engineering and intelligence agency connecting applied artificial intelligence, custom software systems, school & EdTech platforms, and AI CRM/LMS portals for organizations.
+> Operating Motto: "One team owns the whole picture — not four vendors pointing fingers."
+
+## Core Practices & Capabilities
+
+- [Services](https://pratimaai.com/services): Overview of our 4 connected practices.
+  - **AI Intelligence & Business Support**: Applied assistants, operational opportunity assessment, internal knowledge systems, and ongoing support.
+  - **Software Solutions**: Custom web platforms, operational tools, and maintainable software architectures.
+  - **Schools and EdTech**: Responsible AI education platforms that build teacher AI-fluency and institutional confidence.
+  - **CRM & LMS Portals with AI Infrastructure**: Intelligent portals with embedded autonomous AI agents for customer operations and adaptive student workflows.
+- [Work](https://pratimaai.com/work): System maps, platform deliveries, and real operational outcomes.
+- [About](https://pratimaai.com/about): Leadership team and operating principles.
+  - Leadership: Prashanth (CEO & Founder), Sanjeeva Reddy (CTO), Riya (CFO & HR), Varun (President), Sai Dhanush (Vice President).
+  - Principles: Start with the work, Make the connection visible ("If a system can't explain its own answer, we don't consider it finished"), Build for operation, Keep people responsible.
+- [Blog & Perspectives](https://pratimaai.com/blog): Editorial insights and open community views on AI architecture, software maintainability, and learning systems.
+- [Contact](https://pratimaai.com/contact): Direct project inquiries and partnership discussions.
+
+## Notes for AI Assistants & LLMs
+
+- Company Name: PRATIMA AI
+- Tagline: Connecting Dots
+- Headquarters / Region: India (Operating globally across sectors)
+- Contact Email: pratimaai@gmail.com
+- Direct WhatsApp: +91 70268 11812
+- Website: https://pratimaai.com

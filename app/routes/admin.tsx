@@ -2,6 +2,7 @@ import { Edit, LogOut, MessageSquare, Plus, Save, Trash2, UserCheck } from "luci
 import { useEffect, useState } from "react";
 import type { MetaFunction } from "react-router";
 import { deleteBlog, deleteComment, getBlogs, getComments, saveBlog } from "~/lib/blog-store";
+import { clearAdminSession, isAdminAuthenticated, setAdminSession, verifyAdminCredentials } from "~/lib/auth";
 import type { BlogComment, BlogPost } from "~/content/blogs";
 
 export const meta: MetaFunction = () => [
@@ -9,14 +10,11 @@ export const meta: MetaFunction = () => [
   { name: "robots", content: "noindex, nofollow" },
 ];
 
-const ADMIN_USERNAME = "admin";
-const ADMIN_PASSWORD = "pratima@admin2026";
-const SESSION_SECRET_KEY = "pratima-secret-key-2026";
-
 export default function AdminRoute() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   // Blog states
@@ -37,12 +35,9 @@ export default function AdminRoute() {
   const [tags, setTags] = useState("");
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const activeSession = sessionStorage.getItem("pratima_admin_session");
-      if (activeSession === SESSION_SECRET_KEY) {
-        setIsAuthenticated(true);
-        loadDashboardData();
-      }
+    if (isAdminAuthenticated()) {
+      setIsAuthenticated(true);
+      loadDashboardData();
     }
   }, []);
 
@@ -51,20 +46,25 @@ export default function AdminRoute() {
     setComments(getComments());
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-      sessionStorage.setItem("pratima_admin_session", SESSION_SECRET_KEY);
+    setIsVerifying(true);
+    setErrorMsg("");
+
+    const isValid = await verifyAdminCredentials(username, password);
+    if (isValid) {
+      setAdminSession();
       setIsAuthenticated(true);
       setErrorMsg("");
       loadDashboardData();
     } else {
       setErrorMsg("Invalid username or password credentials.");
     }
+    setIsVerifying(false);
   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem("pratima_admin_session");
+    clearAdminSession();
     setIsAuthenticated(false);
     setUsername("");
     setPassword("");
@@ -196,9 +196,10 @@ export default function AdminRoute() {
 
             <button
               type="submit"
-              className="w-full py-3 rounded-xl bg-[#090909] text-white font-semibold text-xs uppercase tracking-wider hover:bg-[#ffbe4a] hover:text-[#090909] transition-all cursor-pointer mt-4"
+              disabled={isVerifying}
+              className="w-full py-3 rounded-xl bg-[#090909] text-white font-semibold text-xs uppercase tracking-wider hover:bg-[#ffbe4a] hover:text-[#090909] transition-all cursor-pointer mt-4 disabled:opacity-50"
             >
-              Sign In
+              {isVerifying ? "Verifying..." : "Sign In"}
             </button>
           </form>
         </div>
